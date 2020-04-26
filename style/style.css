@@ -67,3 +67,18 @@ label {
 .FormBlock {
     margin-top: 30px;
 }
+#list {
+    display: flex;
+    list-style: none;
+    justify-content: space-evenly;
+}
+.noteBlock {
+    background: yellow;
+}
+.noteBlockTitle {
+    padding: 10px;
+}
+.noteBlockContent {
+    padding: 20px;
+    font-family: cursive;
+}
