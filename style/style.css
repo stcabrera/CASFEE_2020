@@ -3,3 +3,41 @@
     margin: 0;
     padding: 0;
 }
+#wrapper {
+    width: 100%;
+    height: 100vh;
+    background: grey;
+}
+.flex_column {
+    display: flex;
+    flex-direction: column;
+}
+.top {
+    background: green;
+    flex-grow: 1;
+}
+.center {
+    background: rgb(184, 184, 184);
+    flex-grow: 6;
+}
+.bottom {
+    background: khaki;
+    flex-grow: 1;
+}
+#modalForm {
+    background: rgba(0, 0, 0, 0.9);
+    position: fixed;
+    height: 100vh;
+    width: 100%;
+    display: none;
+}
+.modalFormInner {
+    width: 50%;
+    height: 50vh;
+    background: white;
+    margin: auto;
+}
+#add {
+    padding: 10px;
+    cursor: pointer;
+}
