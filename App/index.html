@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" type="text/css" href="style/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="modalForm">
+        <div class="modalFormInner">
+            <div class="closeForm">X</div>
+            <div class="FormBlock">
+                <label>Title<input type="text" id="title"></label>
+            </div>
+           <div class="FormBlock">
+            <label>Inhalt<input type="text" id="note"></label>
+        </div>
+           <div class="FormBlock">
+            <label>Wichtigkeit<br>
+                <select id="importance">
+                    <option value="high">High</option>
+                    <option value="medium">Medium</option>
+                    <option value="low">Low</option>
+                  </select>
+                        
+            </label>
+        </div>
+           <div class="FormBlock">
+            <label>Erledigt bis:<input type="date" id="date"></label> 
+        </div>
+           
+           <button id="save">Save</button>
+        </div>
+    </div>
+    
+    <div id="wrapper" class="flex_column">
+        <section class="top">
+            <button id="add">Create new Note</button>
+        </section>
+        <section class="center">
+            <ul id="list">
+                <li class="noteBlock">
+                    <div class="noteBlockTitle">Title</div>
+                    <div class="noteBlockContent">Notiz App erstellen</div>
+                    <div>Importance: High</div>
+                    <div>Due date: 28.06.2020</div>
+                </li>
+                <li class="noteBlock">
+                    <div class="noteBlockTitle">Title</div>
+                    <div class="noteBlockContent">Notiz App erstellen</div>
+                    <div>Importance: High</div>
+                    <div>Due date: 28.06.2020</div>
+                </li>
+                <li class="noteBlock">
+                    <div class="noteBlockTitle">Title</div>
+                    <div class="noteBlockContent">Notiz App erstellen</div>
+                    <div>Importance: High</div>
+                    <div>Due date: 28.06.2020</div>
+                </li>
+             
+            </ul>
+        </section>
+        <section class="bottom"></section>
+    </div>
+    <script src="script/script.js"></script>
+</body>
+</html>
