@@ -3,12 +3,13 @@ const router = express.Router();
 const Task = require('../models/Task');
 
 // Get Tasks
-router.get('/', (req, res) => {
-  res.send('Blubber');
+router.get('/', async (req, res) => {
+  const tasks = await Task.find();
+  res.json(tasks);
 });
 
 router.post('/', (req,res) => {
-  console.log(req.body.title);
+  console.log(req.body);
   const task = new Task({
     title: req.body.title,
     note: req.body.note,
