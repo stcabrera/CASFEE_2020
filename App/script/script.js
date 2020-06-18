@@ -1,10 +1,10 @@
 let button = document.querySelector('#add');
 let closeButton = document.querySelector('.closeForm');
-let saveButton = document.querySelector('#save');
+//let saveButton = document.querySelector('#save');
 
 button.addEventListener("click", createNote);
 closeButton.addEventListener("click", closeForm);
-saveButton.addEventListener('click', getInput);
+//saveButton.addEventListener('click', getInput);
 
  function createNote() {
    document.querySelector('#modalForm').style.left = '0';

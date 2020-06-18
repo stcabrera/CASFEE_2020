@@ -68,7 +68,7 @@
   #list {
     display: flex;
     flex-direction: column;
-    max-width: 50%;
+    max-width: 1000px;
     margin: auto;
     background:grey;
     padding: 10px;
@@ -78,4 +78,18 @@
     background: rgb(201, 201, 201);
     margin-top: 10px;
     padding: 10px;
+  }
+  #sortBlock {
+    display: flex;
+    justify-content: space-evenly;
+  }
+  .sortButton {
+    background: rgb(177, 177, 177);
+    padding: 10px;
+    cursor: pointer;
+    transition: all linear 0.2s;
+  }
+  .sortButton:hover {
+    background: rgb(223, 223, 223);
+    transition: all linear 0.2s;
   }
