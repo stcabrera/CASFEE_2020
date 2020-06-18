@@ -22,7 +22,9 @@ function getData() {
           '<div class= "listTitle">' + data[i].title + '</div>' + 
           '<div class= "listNote">' + data[i].note + '</div>'  + 
           '</div>' +
-          '<div class="listRight"></div>'+
+          '<div class="listRight">' +
+          data[i].dueDate +
+          '</div>'+
           '<div class= "edit"></div>' +
           '<div class= "delete"></div>' +
           
