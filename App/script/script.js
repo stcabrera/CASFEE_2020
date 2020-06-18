@@ -17,6 +17,7 @@ function getData() {
       let li = document.createElement('li');
           li.className = "listItem";
           li.innerHTML = '<div class="listWrapper">' +
+          '<div class= "check"></div>' +
           '<div class= "listLeft">' + 
           '<div class= "listTitle">' + data[i].title + '</div>' + 
           '<div class= "listNote">' + data[i].note + '</div>'  + 
