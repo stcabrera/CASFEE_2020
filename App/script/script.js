@@ -1,6 +1,6 @@
 let button = document.querySelector('#add');
 let closeButton = document.querySelector('.closeForm');
-let list = document.querySelector('#list');
+let list = document.querySelector('.list');
 
 button.addEventListener("click", function(){document.querySelector('#modalForm').style.left = '0';});
 closeButton.addEventListener("click", function(){document.querySelector('#modalForm').style.left = '-350px';});

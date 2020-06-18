@@ -53,19 +53,21 @@
     cursor: pointer;
     background: green;
     border: none;
-    margin: 10px;
+    margin: 20px;
     color: white;
     font-size: 1.2em;
     outline: none;
+    border-radius: 10px;
   }
   #colorChanger {
     padding: 10px;
     cursor: pointer;
     background: #7f807f;
     border: none;
-    margin: 10px;
+    margin: 20px;
     color: white;
     font-size: 1.2em;
+    border-radius: 10px;
   }
   #colorChanger:focus {
     outline: none;
@@ -81,23 +83,27 @@
     cursor: pointer;
   }
  
-  #list {
+  .list {
     display: flex;
     flex-direction: column;
     max-width: 1000px;
     margin: auto;
-    background:grey;
     padding: 10px;
     list-style: none;
+    
   }
   .listItem {
-    background: rgb(201, 201, 201);
     margin-top: 10px;
     padding: 10px;
+    border-bottom: 1px solid #9d9d9d;
   }
   #sortBlock {
     display: flex;
     justify-content: space-evenly;
+    background: grey;
+    max-width: 1000px;
+    margin: auto;
+    padding: 10px;
   }
   .sortButton {
     background: rgb(177, 177, 177);
@@ -114,4 +120,7 @@
   }
   .darkModeTop {
     background: rgb(22, 22, 22);
+  }
+  .darkModelist {
+    color: rgb(167, 167, 167);
   }
