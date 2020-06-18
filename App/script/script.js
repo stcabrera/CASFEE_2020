@@ -16,8 +16,17 @@ function getData() {
     for (var i = 0; i < data.length; i++) {
       let li = document.createElement('li');
           li.className = "listItem";
-          li.innerHTML = data[i].title + '<br>' + data[i].note + '</br>' + data[i].importance + '<br>' + data[i].dueDate + '<br>' + data[i]._id;
-          list.appendChild(li);
+          li.innerHTML = '<div class="listWrapper">' +
+          '<div class= "listLeft">' + 
+          '<div class= "listTitle">' + data[i].title + '</div>' + 
+          '<div class= "listNote">' + data[i].note + '</div>'  + 
+          '</div>' +
+          '<div class="listRight"></div>'+
+          '<div class= "edit"></div>' +
+          '<div class= "delete"></div>' +
+          
+          '</div>';
+          list.appendChild(li)
     }
   })
   .catch(function(error) {

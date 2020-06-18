@@ -23,6 +23,7 @@
     flex-grow: 1;
     display: flex;
     justify-content: space-between;
+    max-height: 100px;
   }
   .center {
     flex-grow: 6;
@@ -88,14 +89,46 @@
     flex-direction: column;
     max-width: 1000px;
     margin: auto;
-    padding: 10px;
-    list-style: none;
-    
+    list-style: none; 
   }
   .listItem {
-    margin-top: 10px;
+    margin-top: 5px;
     padding: 10px;
-    border-bottom: 1px solid #9d9d9d;
+    background: rgba(208, 208, 208, 0.26);
+    border-radius: 10px;
+  }
+  .listWrapper {
+    display: flex;
+  }
+
+  .listLeft {
+    min-width: 60%;
+  }
+
+  .listRight {
+    flex-grow: 1;
+  }
+
+  .edit {
+    background: rgb(107, 182, 107);
+    width: 50px;
+    height: 50px;
+  }
+
+  .delete {
+    background: rgb(179, 48, 48);
+    width: 50px;
+    height: 50px;
+  }
+  .listTitle {
+    background: rgba(172, 198, 172, 0.25);
+    padding: 5px;
+    text-transform: uppercase;
+  }
+  .listNote {
+    background: rgba(255, 255, 0, 0.2);
+    padding: 5px;
+    font-family: monospace;
   }
   #sortBlock {
     display: flex;
