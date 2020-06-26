@@ -3,6 +3,8 @@ let closeButton = document.querySelector('.closeForm');
 let list = document.querySelector('.list');
 const server = 'http://localhost:3000/';
 
+document.querySelector('.taskFullview').addEventListener('click', function(){location.reload()})
+
 button.addEventListener("click", function(){document.querySelector('#modalForm').style.left = '0';});
 closeButton.addEventListener("click", function(){document.querySelector('#modalForm').style.left = '-450px';});
 
@@ -20,10 +22,7 @@ function getData() {
           li.className = "listItem";
           li.innerHTML = '<div class="listWrapper">' +
           '<div class= "check"></div>' +
-          '<div class= "listLeft">' + 
           '<div class= "listTitle">' + data[i].title + '</div>' + 
-          '<div class= "listNote">' + data[i].note + '</div>'  + 
-          '</div>' +
           '<div class="listRight">' +
           data[i].dueDate +
           '</div>'+
@@ -33,6 +32,8 @@ function getData() {
           list.appendChild(li);
   
    const taskId = data[i]._id;
+   const taskTitle = data[i].title;
+   const taskText = data[i].note;
 
           // Delete Task
           li.querySelector('.delete').addEventListener('click', function () {
@@ -47,15 +48,23 @@ function getData() {
             } 
           });
 
+          // See Task in Fullview
           li.querySelector('.listTitle').addEventListener('click', function () {
             console.log('Fullview for Task No: ' + taskId)
+            document.querySelector('.taskFullview').style.display = 'flex';
+            let taskDetail = document.querySelector('.taskFullview__box');
+            let taskDetailList = document.createElement('li');
+                taskDetailList.className = "taskDetailList";
+                taskDetailList.innerHTML = '';
+                taskDetailList.innerHTML = '<div class="taskFullview__Title">' + taskTitle + '</div>' + taskText;
+              taskDetail.appendChild(taskDetailList);
           })
         
         }
   })
  
   
-  // See Task in Fullview
+  
   
 }
 getData();
@@ -96,5 +105,6 @@ fetch("http://localhost:3000/tasks", requestOptions)
   location.reload()
 
 }
+
 
 

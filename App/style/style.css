@@ -137,9 +137,6 @@ input:focus, select:focus {
   .listLeft {
     min-width: 60%;
   }
-  .listRight {
-    flex-grow: 1;
-  }
   .edit {
     border: 1px solid rgb(107, 182, 107);
     width: 50px;
@@ -163,14 +160,16 @@ input:focus, select:focus {
     background: red;
   }
   .listTitle {
-    padding: 5px;
-    text-transform: uppercase;
+    ptext-transform: uppercase;
+    background: #d5d8dd;
+    flex-grow: 2;
+    border-radius: 20px;
+    padding: 20px 50px;
+    font-weight: bold;
+    color: dimgrey;
+    cursor: pointer;
   }
-  .listNote {
-    background: rgba(255, 255, 0, 0.2);
-    padding: 5px;
-    font-family: monospace;
-  }
+  
   #sortBlock {
     display: flex;
     justify-content: flex-end;
@@ -211,11 +210,23 @@ input:focus, select:focus {
   width: 100%;
   background: rgba(0, 0, 0, 0.9);
   position: fixed;
-  display: flex;
+  display: none;
 }
 .taskFullview__box {
-  width: 80%;
-  height: 80vh;
+  width: 500px;
+  height: 400px;
   background: #d7e5c4;
   margin: auto;
+}
+.taskDetailList {
+  list-style: none;
+}
+.taskFullview__Title {
+  background: #a6c084;
+    padding: 20px;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    font-size: 1.8em;
+    font-family: monospace;
 }
