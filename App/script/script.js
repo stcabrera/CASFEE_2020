@@ -1,17 +1,20 @@
 let button = document.querySelector('#add');
 let closeButton = document.querySelector('.closeForm');
 let list = document.querySelector('.list');
+const server = 'http://localhost:3000/';
 
 button.addEventListener("click", function(){document.querySelector('#modalForm').style.left = '0';});
 closeButton.addEventListener("click", function(){document.querySelector('#modalForm').style.left = '-450px';});
 
 //get Data from API
+const dataArray = [];
 function getData() {
-  fetch('http://localhost:3000/tasks')
+  fetch(server + 'tasks')
   .then(function(response) {
     return response.json();
   })
   .then(function(data) {
+    console.log(data)
     for (var i = 0; i < data.length; i++) {
       let li = document.createElement('li');
           li.className = "listItem";
@@ -27,12 +30,33 @@ function getData() {
           '<div class= "edit"></div>' +
           '<div class= "delete"></div>' +
           '</div>';
-          list.appendChild(li)
-    }
+          list.appendChild(li);
+  
+   const taskId = data[i]._id;
+
+          // Delete Task
+          li.querySelector('.delete').addEventListener('click', function () {
+            var check = confirm('Wollen diesen Eintrag wirklich löschen?');
+            if (check === false) {} else {
+              fetch(server + 'tasks/' + taskId, {
+                method: 'DELETE',
+    })
+            .then(res => res.text()) // or res.json()
+            .then(res => console.log(res))
+            location.reload()
+            } 
+          });
+
+          li.querySelector('.listTitle').addEventListener('click', function () {
+            console.log('Fullview for Task No: ' + taskId)
+          })
+        
+        }
   })
-  .catch(function(error) {
-    console.error(error);
-  });
+ 
+  
+  // See Task in Fullview
+  
 }
 getData();
 
@@ -69,7 +93,7 @@ fetch("http://localhost:3000/tasks", requestOptions)
   .then(result => console.log('Task pushed'))
   .catch(error => console.log('error', error));
 
-setInterval(getData(), 3000);
+  location.reload()
 
 }
 

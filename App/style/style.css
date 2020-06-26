@@ -206,3 +206,16 @@ input:focus, select:focus {
     color: black;
     background: none;
   }
+.taskFullview {
+  height: 100vh;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.9);
+  position: fixed;
+  display: flex;
+}
+.taskFullview__box {
+  width: 80%;
+  height: 80vh;
+  background: #d7e5c4;
+  margin: auto;
+}
