@@ -9,7 +9,6 @@ button.addEventListener("click", function(){document.querySelector('#modalForm')
 closeButton.addEventListener("click", function(){document.querySelector('#modalForm').style.left = '-450px';});
 
 //get Data from API
-const dataArray = [];
 function getData() {
   fetch(server + 'tasks')
   .then(function(response) {
@@ -46,7 +45,11 @@ function getData() {
     })
             .then(res => res.text()) // or res.json()
             .then(res => console.log(res))
+
+            ////////////////////////////////////////////Provisorisch
             location.reload()
+            ////////////////////////////////////////////
+
             } 
           });
 
@@ -69,11 +72,7 @@ function getData() {
         
           // make Task checked
           li.querySelector('.check').addEventListener('click', function () {
-            console.log('Checked for Task No: ' + taskId)
-            console.log(importance);
-
             if (importance === 'done') {
-              console.log('this task is already done')
               fetch(server + 'tasks/' + taskId, {
                 headers: { "Content-Type": "application/json; charset=utf-8" },
                   method: 'PATCH',
@@ -86,7 +85,12 @@ function getData() {
       })
               .then(res => res.text()) // or res.json()
               .then(res => console.log(res))
+
+              ////////////////////////////////////////////Provisorisch
               location.reload()
+              ////////////////////////////////////////////
+
+
             } else {
               fetch(server + 'tasks/' + taskId, {
                 headers: { "Content-Type": "application/json; charset=utf-8" },
@@ -100,10 +104,47 @@ function getData() {
       })
               .then(res => res.text()) // or res.json()
               .then(res => console.log(res))
+
+              ////////////////////////////////////////////Provisorisch
               location.reload()
+              ////////////////////////////////////////////
 
             }  
           })
+
+          // Update Data
+          li.querySelector('.edit').addEventListener('click', function () {
+            document.querySelector('#modalForm').style.left = '0';
+            let updateButton = document.querySelector('#save');
+            updateButton.addEventListener('click', updateData);
+            updateButton.addEventListener("click", function(){document.querySelector('#modalForm').style.left = '-450px';});
+  
+                function updateData() {
+                  fetch(server + 'tasks/' + taskId, {
+                    headers: { "Content-Type": "application/json; charset=utf-8" },
+                      method: 'PATCH',
+                      body: JSON.stringify({
+                      "title": document.querySelector('#title').value,
+                      "note": document.querySelector('#note').value,
+                      "importance": document.querySelector('#importance').value,
+                      "dueDate": document.querySelector('#date').value,
+                      })     
+          })
+                  .then(res => res.text()) // or res.json()
+                  .then(res => console.log(res))
+
+                }
+              
+
+              ////////////////////////////////////////////Provisorisch
+             
+              ////////////////////////////////////////////
+
+
+             
+          })
+
+          ////////////////////
         }
   })  
 }
@@ -143,7 +184,9 @@ fetch("http://localhost:3000/tasks", requestOptions)
   .then(result => console.log('Task pushed'))
   .catch(error => console.log('error', error));
 
+  ////////////////////////////////////////////Provisorisch
   location.reload()
+  ////////////////////////////////////////////
 
 }
 
