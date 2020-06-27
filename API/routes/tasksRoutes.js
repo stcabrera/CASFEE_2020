@@ -16,7 +16,7 @@ router.post('/', (req,res) => {
     note: req.body.note,
     importance: req.body.importance,
     dueDate: req.body.dueDate,
-    done: req.body.done
+    done: ''
     
   });
 
@@ -40,11 +40,33 @@ router.get('/:taskId', async (req, res) => {
 // Delete Task
 router.delete('/:taskId', async (req,res) => {
   try {
-    const removedPost = await Task.remove({_id: req.params.taskId});
+    const removedTask = await Task.remove({_id: req.params.taskId});
   }
   catch(err) {
     console.log('Error');
   }
 });
 
+// Update Task
+
+router.patch('/:taskId', async (req, res) => {
+  try {
+    const updatedTask = await Task.updateOne(
+      {_id: req.params.taskId}, 
+      { $set: {
+        title: req.body.title,
+        note: req.body.note,
+        importance: req.body.importance,
+        dueDate: req.body.dueDate
+      }});
+      res.json(updatedTask);
+  }
+  catch(err) {
+    res.json({ message: err});
+  }
+  
+})
+
 module.exports = router;
+
+ 

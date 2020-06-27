@@ -34,6 +34,8 @@ function getData() {
    const taskId = data[i]._id;
    const taskTitle = data[i].title;
    const taskText = data[i].note;
+   const importance = data[i].importance;
+   const taskDueDate = data[i].dueDate
 
           // Delete Task
           li.querySelector('.delete').addEventListener('click', function () {
@@ -59,13 +61,51 @@ function getData() {
                 taskDetailList.innerHTML = '<div class="taskFullview__Title">' + taskTitle + '</div>' + taskText;
               taskDetail.appendChild(taskDetailList);
           })
+
+          // Check for finished Tasks
+          if (importance === 'done') {
+            li.querySelector('.check').style.background = 'green'
+          }
         
+          // make Task checked
+          li.querySelector('.check').addEventListener('click', function () {
+            console.log('Checked for Task No: ' + taskId)
+            console.log(importance);
+
+            if (importance === 'done') {
+              console.log('this task is already done')
+              fetch(server + 'tasks/' + taskId, {
+                headers: { "Content-Type": "application/json; charset=utf-8" },
+                  method: 'PATCH',
+                  body: JSON.stringify({
+                    "title": taskTitle,
+                    "note": taskText,
+                    "importance": 'high',
+                    "dueDate": taskDueDate,
+                  })     
+      })
+              .then(res => res.text()) // or res.json()
+              .then(res => console.log(res))
+              location.reload()
+            } else {
+              fetch(server + 'tasks/' + taskId, {
+                headers: { "Content-Type": "application/json; charset=utf-8" },
+                  method: 'PATCH',
+                  body: JSON.stringify({
+                    "title": taskTitle,
+                    "note": taskText,
+                    "importance": 'done',
+                    "dueDate": taskDueDate,
+                  })     
+      })
+              .then(res => res.text()) // or res.json()
+              .then(res => console.log(res))
+              location.reload()
+
+            }  
+          })
         }
-  })
- 
-  
-  
-  
+  })  
 }
 getData();
 
@@ -87,7 +127,8 @@ function pushData() {
     "title": document.querySelector('#title').value,
     "note": document.querySelector('#note').value,
     "importance": document.querySelector('#importance').value,
-    "dueDate": document.querySelector('#date').value
+    "dueDate": document.querySelector('#date').value,
+  
   });
 
   const requestOptions = {
