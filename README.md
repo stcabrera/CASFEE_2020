@@ -22,5 +22,5 @@ npm start
 
 Open index File from Folder 'App'
 
-![Alt text](/App/img/check.png?raw=true "Title")
+![Alt text](/App/img/noteApp.png?raw=true "Title")
 
