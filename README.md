@@ -12,7 +12,7 @@ $ cd API
 $ npm start
 ```
 ##
-#### Requires mongoDB Database, named Tasks
+#### Requires mongoDB Database, named 'tasks'
 Include your MongoDB connection in File ***API/.env***
 ##
 
