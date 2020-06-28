@@ -1,8 +1,7 @@
 # CASFEE_2020
 ## Projekt 1_Stephan Cabrera
 
-
-
+![Alt text](/App/img/noteApp.png?raw=true "Title")
 
 ## Installation
 
@@ -22,5 +21,5 @@ npm start
 
 Open index File from Folder 'App'
 
-![Alt text](/App/img/noteApp.png?raw=true "Title")
+
 
