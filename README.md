@@ -7,15 +7,14 @@
 
 clone Git repository and go to API Folder
 
-```bash
-cd API
+```sh
+$ cd API
+$ npm start
 ```
-
-Start Server
-
-```bash
-npm start
-```
+##
+#### Requires mongoDB Database, named Tasks
+Include your MongoDB connection in File ***API/.env***
+##
 
 ## Use
 
