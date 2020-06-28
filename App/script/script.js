@@ -371,7 +371,7 @@ function getPendingTasks() {
                           "title": taskTitle,
                           "note": taskText,
                           "importance": 'done',
-                          "dueDate": taskDueDate,
+                          "dueDate": dueDate,
                         })     
             })
                     render()
