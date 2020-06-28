@@ -31,6 +31,7 @@
         </div>
            <div class="FormBlock">
             <label>Erledigt bis:<input type="date" id="date"></label> 
+            <label>Erstellt am:<input type="text" id="today"></label> 
         </div>
            
            <button id="save">Save</button>
@@ -45,9 +46,16 @@
         </section>
         <section class="center">
             <div id="sortBlock">
-                <div class="sortButton">By finish Date</div>
-                <div class="sortButton"> By created Date</div>
-                <div class="sortButton">By Importance</div>
+                <div id="sortDone">
+                    <div class="sortFinished">finished</div>
+                    <div class="sortButton">pendet</div>
+                    <div class="sortAll">all</div>
+                </div> 
+                <div class="sortTasks">
+                    <div class="sortButton">By finish Date</div>
+                    <div class="sortButton"> By created Date</div>
+                    <div class="sortButton">By Importance</div>
+                </div>               
             </div> 
             <ul class="list">       
             </ul>
@@ -57,7 +65,6 @@
     
     <script src="script/script.js"></script>
     <script src="script/style.js"></script>
-    <script src="script/data.js"></script>
 </body>
 </html>
 

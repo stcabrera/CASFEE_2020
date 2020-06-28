@@ -16,7 +16,7 @@ router.post('/', (req,res) => {
     note: req.body.note,
     importance: req.body.importance,
     dueDate: req.body.dueDate,
-    done: ''
+    created: req.body.today
     
   });
 
@@ -57,7 +57,8 @@ router.patch('/:taskId', async (req, res) => {
         title: req.body.title,
         note: req.body.note,
         importance: req.body.importance,
-        dueDate: req.body.dueDate
+        dueDate: req.body.dueDate,
+        created: req.body.today
       }});
       res.json(updatedTask);
   }

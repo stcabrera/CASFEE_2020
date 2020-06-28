@@ -25,6 +25,9 @@
     justify-content: space-between;
     max-height: 100px;
   }
+  .sortTasks, #sortDone {
+    display: flex
+  }
   .center {
     flex-grow: 6;
   }
@@ -129,38 +132,53 @@ input:focus, select:focus {
     width: 30px;
     height: 30px;
     border-radius: 50%;
-    margin: 15px 10px 0 0;
+    margin: 15px 10px 0 20px;
     cursor: pointer;
     color: #4d4c4c;
     box-shadow: inset 1px 1px 5px;
+    background-position: center;
+    background-size: 100%;
   }
   .listLeft {
     min-width: 60%;
   }
   .edit {
-    border: 1px solid rgb(107, 182, 107);
+    box-shadow: -1px 1px 5px rgba(0, 128, 0, 0.64);
     width: 50px;
     height: 50px;
     border-radius: 10px 0  0 10px;
     cursor: pointer;
+    background-image: url(../img/edit.png);
+    background-position: center;
+    background-size: 100%;
+    background-size: 50%;
+    background-repeat: no-repeat;
+    transition: all linear 0.2s;
   }
   .edit:hover {
-    background:rgb(107, 182, 107);
+    box-shadow : -3px 3px 10px  rgb(107, 182, 107);
+    background-color: #ffffff;
   }
   .delete {
     width: 50px;
     height: 50px;
     border-radius: 0 10px 10px 0;
-    border: 1px solid #fd7373;
+    box-shadow: 1px 1px 5px #fd7373;
     border-left: 0;
     transition: all linear 0.2s;
     cursor: pointer;
+    background-image: url(../img/delete.png);
+    background-position: center;
+    background-size: 100%;
+    background-size: 50%;
+    background-repeat: no-repeat;
   }
   .delete:hover {
-    background: red;
+    box-shadow : 3px 3px 10px red;
+    background-color: #ffffff;
   }
   .listTitle {
-    ptext-transform: uppercase;
+    text-transform: uppercase;
     background: #d5d8dd;
     flex-grow: 2;
     border-radius: 20px;
@@ -168,17 +186,18 @@ input:focus, select:focus {
     font-weight: bold;
     color: dimgrey;
     cursor: pointer;
+    margin: 0 50px;
   }
   
   #sortBlock {
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     background: grey;
     max-width: 1000px;
     margin: auto;
     padding: 10px;
   }
-  .sortButton {
+  .sortButton, .sortFinished, .sortAll {
     background: rgb(177, 177, 177);
     padding: 10px;
     cursor: pointer;
