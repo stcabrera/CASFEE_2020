@@ -5,7 +5,11 @@ const server = 'http://localhost:3000/';
 
 document.querySelector('.taskFullview').addEventListener('click', function(){location.reload()})
 
-button.addEventListener("click", function(){document.querySelector('#modalForm').style.left = '0';});
+button.addEventListener("click", function(){
+  document.querySelector('#modalForm').style.left = '0';
+  document.querySelector('#save').style.display = 'block';
+  document.querySelector('#update').style.display = 'none';
+});
 closeButton.addEventListener("click", function(){document.querySelector('#modalForm').style.left = '-450px';});
 
 //get Data from API
@@ -115,7 +119,9 @@ function getData() {
           // Update Data
           li.querySelector('.edit').addEventListener('click', function () {
             document.querySelector('#modalForm').style.left = '0';
-            let updateButton = document.querySelector('#save');
+            document.querySelector('#save').style.display = 'none';
+            document.querySelector('#update').style.display = 'block';
+            let updateButton = document.querySelector('#update');
             updateButton.addEventListener('click', updateData);
             updateButton.addEventListener("click", function(){document.querySelector('#modalForm').style.left = '-450px';});
   
@@ -133,15 +139,11 @@ function getData() {
                   .then(res => res.text()) // or res.json()
                   .then(res => console.log(res))
 
-                }
-              
-
-              ////////////////////////////////////////////Provisorisch
-             
+                  ////////////////////////////////////////////Provisorisch
+              location.reload()
               ////////////////////////////////////////////
 
-
-             
+                }   
           })
 
           ////////////////////
@@ -154,7 +156,8 @@ getData();
 //Push Data to API
 const saveButton = document.querySelector('#save');
       saveButton.addEventListener('click', pushData);
-      saveButton.addEventListener("click", function(){document.querySelector('#modalForm').style.left = '-450px';});
+      saveButton.addEventListener("click", function(){
+        document.querySelector('#modalForm').style.left = '-450px';});
 
 function pushData() {
   list.innerHTML = '';

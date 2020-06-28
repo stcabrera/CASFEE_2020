@@ -97,7 +97,7 @@ input:focus, select:focus {
     cursor: pointer;
     border-radius: 0 0 0 50%;
   }
-  #save {
+  #save, #update {
     background: #71a771;
     margin-top: 10px;
     margin-left: auto;
