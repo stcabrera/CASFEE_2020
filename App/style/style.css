@@ -123,7 +123,7 @@ input:focus, select:focus {
     margin-top: 5px;
     padding: 10px;
     background: rgba(208, 208, 208, 0.26);
-    border-radius: 10px;
+    border-radius: 20px 10px 10px 10px;
   }
   .listWrapper {
     display: flex;
@@ -197,7 +197,7 @@ input:focus, select:focus {
     margin: auto;
     padding: 10px;
   }
-  .sortButton, .sortFinished, .sortAll {
+  .sortButton, .sortFinished, .sortAll, .sortPending {
     background: rgb(177, 177, 177);
     padding: 10px;
     cursor: pointer;
@@ -206,7 +206,7 @@ input:focus, select:focus {
     font-size: 0.8em;
     color: white;
   }
-  .sortButton:hover {
+  .sortButton:hover, .sortFinished:hover, .sortAll:hover, .sortPending:hover {
     background: rgb(223, 223, 223);
     transition: all linear 0.2s;
     color: rgb(105, 105, 105);
@@ -242,10 +242,37 @@ input:focus, select:focus {
 }
 .taskFullview__Title {
   background: #a6c084;
-    padding: 20px;
-    text-align: center;
-    color: white;
-    font-weight: bold;
-    font-size: 1.8em;
-    font-family: monospace;
+  padding: 20px;
+  text-align: center;
+  color: white;
+  font-weight: bold;
+  font-size: 1.8em;
+  font-family: monospace;
+}
+.calendar  {
+  width: 50px;
+  margin: -10px 0 0 -10px;
+}
+.calendarDay {
+  text-align: center;
+  padding-top: 5px;
+  color: white;
+  font-size: 1.5em;
+  background: #303030;
+  border-radius: 20px 0 0 0;
+}
+
+.calendarMonth {
+  text-align: center;
+  color: white;
+  background: #3c3c3c;
+  padding: 2px;
+}
+
+.calendarYear {
+  text-align: center;
+  color: white;
+  font-size: 0.6em;
+  padding: 3px;
+  background: #5b5b6b;
 }

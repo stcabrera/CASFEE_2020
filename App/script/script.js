@@ -30,13 +30,26 @@ function getData() {
   .then(function(data) {
     console.log(data)
     for (var i = 0; i < data.length; i++) {
+      let dueDate = data[i].dueDate
+      let newDate = new Date(dueDate)
+      let day = newDate.getDate();
+      let month = newDate.getMonth() + 1;
+      let year = newDate.getFullYear();
+      let showDate = day + '.' + month + '.' + year;
+      let months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+
       let li = document.createElement('li');
           li.className = "listItem";
           li.innerHTML = '<div class="listWrapper">' +
+          '<div class="calendar">' +
+          '<div class="calendarDay">' + day + '</div>' +
+          '<div class="calendarMonth">' + months[newDate.getMonth()] + '</div>' +
+          '<div class="calendarYear">' + year + '</div>' +
+
+          '</div>' +
           '<div class= "check"></div>' +
           '<div class= "listTitle">' + data[i].title + '</div>' + 
-          '<div class="listRight">' +
-          data[i].dueDate + 
+          '<div class="listRight">' + 
           '</div>'+
           '<div class= "edit"></div>' +
           '<div class= "delete"></div>' +
@@ -183,20 +196,14 @@ fetch("http://localhost:3000/tasks", requestOptions)
 }
 
 //show finished Tasks
-
 function getFinshedTasks() {
   fetch(server + 'tasks')
   .then(function(response) {
     return response.json();
   })
   .then(function(data) {
-    
-    
     data.forEach(function(task) {
-      if (task.importance === 'done') {
-
-        console.log(task.title)
-   
+      if (task.importance === 'done') {  
           const taskId = task._id;
           const taskTitle = task.title;
           const taskText = task.note;
@@ -208,7 +215,6 @@ function getFinshedTasks() {
                 '<div class= "check"></div>' +
                 '<div class= "listTitle">' + task.title + '</div>' + 
                 '<div class="listRight">' +
-                task.dueDate + 
                 '</div>'+
                 '<div class= "delete"></div>' +
                 '</div>';
@@ -282,3 +288,105 @@ sortAll.addEventListener('click', function() {
   render()
   getData()
 })
+
+//show pending Tasks
+
+function getPendingTasks() {
+  fetch(server + 'tasks')
+  .then(function(response) {
+    return response.json();
+  })
+  .then(function(data) {
+    data.forEach(function(task) {
+      if (task.importance != 'done') {
+          const taskId = task._id;
+          const taskTitle = task.title;
+          const taskText = task.note;
+          const importance = task.importance;
+          let dueDate = task.dueDate
+          let newDate = new Date(dueDate)
+          let day = newDate.getDate();
+          let month = newDate.getMonth() + 1;
+          let year = newDate.getFullYear();
+          let showDate = day + '.' + month + '.' + year;
+          let months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+          let li = document.createElement('li');
+                li.className = "listItem";
+                li.innerHTML = '<div class="listWrapper">' +
+                '<div class="calendar">' +
+                '<div class="calendarDay">' + day + '</div>' +
+                '<div class="calendarMonth">' + months[newDate.getMonth()] + '</div>' +
+                '<div class="calendarYear">' + year + '</div>' +
+      
+                '</div>' +
+                '<div class= "check"></div>' +
+                '<div class= "listTitle">' + task.title + '</div>' + 
+                '<div class="listRight">' +
+          
+                '</div>'+
+                '<div class= "delete"></div>' +
+                '</div>';
+                list.appendChild(li);
+                // Delete Task
+                li.querySelector('.delete').addEventListener('click', function () {
+                  var check = confirm('Wollen Sie diesen Eintrag wirklich löschen?');
+                  if (check === false) {} else {
+                    fetch(server + 'tasks/' + taskId, {
+                      method: 'DELETE',
+          })
+                  .then(res => res.text()) // or res.json()
+                  .then(res => console.log(res))
+      
+                  render()
+                  getPendingTasks()
+                  } 
+                });
+      
+                // Check for finished Tasks
+                if (importance === 'done') {
+                  li.querySelector('.check').style.backgroundImage = 'url(../app/img/check.png)';
+                }
+              
+                // make Task checked
+                li.querySelector('.check').addEventListener('click', function () {
+                  if (importance === 'done') {
+                    fetch(server + 'tasks/' + taskId, {
+                      headers: { "Content-Type": "application/json; charset=utf-8" },
+                        method: 'PATCH',
+                        body: JSON.stringify({
+                          "title": taskTitle,
+                          "note": taskText,
+                          "importance": 'high',
+                          "dueDate": taskDueDate,
+                        })     
+            })
+                    render()
+                    getPendingTasks()
+      
+                  } else {
+                    fetch(server + 'tasks/' + taskId, {
+                      headers: { "Content-Type": "application/json; charset=utf-8" },
+                        method: 'PATCH',
+                        body: JSON.stringify({
+                          "title": taskTitle,
+                          "note": taskText,
+                          "importance": 'done',
+                          "dueDate": taskDueDate,
+                        })     
+            })
+                    render()
+                    getPendingTasks()
+                  }  
+                })       
+                
+                
+      }
+    });  
+  })  
+}
+
+let sortPendeing = document.querySelector('.sortPending');
+sortPendeing.addEventListener('click', function() {
+      render()
+      getPendingTasks()
+    })
