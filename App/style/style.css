@@ -64,7 +64,6 @@
 input:focus, select:focus {
   outline: none;
 }
-
   #add {
     padding: 10px;
     cursor: pointer;
@@ -261,14 +260,12 @@ input:focus, select:focus {
   background: #303030;
   border-radius: 20px 0 0 0;
 }
-
 .calendarMonth {
   text-align: center;
   color: white;
   background: #3c3c3c;
   padding: 2px;
 }
-
 .calendarYear {
   text-align: center;
   color: white;

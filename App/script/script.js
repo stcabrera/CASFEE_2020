@@ -20,7 +20,6 @@ closeButton.addEventListener("click", function(){document.querySelector('#modalF
 
 function render() {list.innerHTML = '';}
 
-
 //get Data from API
 function getData() {
   fetch(server + 'tasks')
@@ -45,7 +44,6 @@ function getData() {
           '<div class="calendarDay">' + day + '</div>' +
           '<div class="calendarMonth">' + months[newDate.getMonth()] + '</div>' +
           '<div class="calendarYear">' + year + '</div>' +
-
           '</div>' +
           '<div class= "check"></div>' +
           '<div class= "listTitle">' + data[i].title + '</div>' + 
@@ -152,8 +150,7 @@ function getData() {
                   .then(res => res.text()) // or res.json()
                   .then(res => console.log(res))
 
-                  render()
-                  getData()
+                  location.reload()
                 }   
           })
         }
@@ -377,9 +374,7 @@ function getPendingTasks() {
                     render()
                     getPendingTasks()
                   }  
-                })       
-                
-                
+                })           
       }
     });  
   })  

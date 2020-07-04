@@ -15,9 +15,7 @@ app.use(function(req, res, next) {
 require('dotenv/config');
 
 app.use(bodyParser.json());
-
 app.use('/tasks', tasksRoutes);
-
 
 // connect to DB
 mongoose.connect(
@@ -25,5 +23,4 @@ process.env.DB_CONNECTION,
 { useNewUrlParser: true }, 
 () =>  console.log('connected')
 );
-
 app.listen(3000);
