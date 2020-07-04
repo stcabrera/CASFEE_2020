@@ -196,7 +196,7 @@ input:focus, select:focus {
     margin: auto;
     padding: 10px;
   }
-  .sortButton, .sortFinished, .sortAll, .sortPending {
+  .sortButton {
     background: rgb(177, 177, 177);
     padding: 10px;
     cursor: pointer;
@@ -205,7 +205,7 @@ input:focus, select:focus {
     font-size: 0.8em;
     color: white;
   }
-  .sortButton:hover, .sortFinished:hover, .sortAll:hover, .sortPending:hover {
+  .sortButton:hover {
     background: rgb(223, 223, 223);
     transition: all linear 0.2s;
     color: rgb(105, 105, 105);

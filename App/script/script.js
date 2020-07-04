@@ -18,7 +18,6 @@ button.addEventListener("click", function(){
 });
 closeButton.addEventListener("click", function(){document.querySelector('#modalForm').style.left = '-450px';});
 
-function render() {list.innerHTML = '';}
 
 //get Data from API
 function getData() {
@@ -58,19 +57,18 @@ function getData() {
    const taskTitle = data[i].title;
    const taskText = data[i].note;
    const importance = data[i].importance;
-   const taskDueDate = data[i].dueDate
+   const taskDueDate = data[i].dueDate;
 
           // Delete Task
           li.querySelector('.delete').addEventListener('click', function () {
             var check = confirm('Wollen Sie diesen Eintrag wirklich löschen?');
             if (check === false) {} else {
               fetch(server + 'tasks/' + taskId, {
-                method: 'DELETE',
+                method: 'DELETE'
     })
             .then(res => res.text()) // or res.json()
             .then(res => console.log(res))
 
-            render()
             getData()
             } 
           });
@@ -105,7 +103,6 @@ function getData() {
                     "dueDate": taskDueDate,
                   })     
       })
-              render()
               getData()
 
             } else {
@@ -119,7 +116,6 @@ function getData() {
                     "dueDate": taskDueDate,
                   })     
       })
-              render()
               getData()
             }  
           })
@@ -188,200 +184,5 @@ fetch("http://localhost:3000/tasks", requestOptions)
   .then(result => console.log('Task pushed'))
   .catch(error => console.log('error', error));
 
-  render()
   getData()
 }
-
-//show finished Tasks
-function getFinshedTasks() {
-  fetch(server + 'tasks')
-  .then(function(response) {
-    return response.json();
-  })
-  .then(function(data) {
-    data.forEach(function(task) {
-      if (task.importance === 'done') {  
-          const taskId = task._id;
-          const taskTitle = task.title;
-          const taskText = task.note;
-          const importance = task.importance;
-          const taskDueDate = task.dueDate
-          let li = document.createElement('li');
-                li.className = "listItem";
-                li.innerHTML = '<div class="listWrapper">' +
-                '<div class= "check"></div>' +
-                '<div class= "listTitle">' + task.title + '</div>' + 
-                '<div class="listRight">' +
-                '</div>'+
-                '<div class= "delete"></div>' +
-                '</div>';
-                list.appendChild(li);
-      
-                // Delete Task
-                li.querySelector('.delete').addEventListener('click', function () {
-                  var check = confirm('Wollen Sie diesen Eintrag wirklich löschen?');
-                  if (check === false) {} else {
-                    fetch(server + 'tasks/' + taskId, {
-                      method: 'DELETE',
-          })
-                  .then(res => res.text()) // or res.json()
-                  .then(res => console.log(res))
-      
-                  render()
-                  getFinshedTasks()
-                  } 
-                });
-      
-                // Check for finished Tasks
-                if (importance === 'done') {
-                  li.querySelector('.check').style.backgroundImage = 'url(../app/img/check.png)';
-                }
-              
-                // make Task checked
-                li.querySelector('.check').addEventListener('click', function () {
-                  if (importance === 'done') {
-                    fetch(server + 'tasks/' + taskId, {
-                      headers: { "Content-Type": "application/json; charset=utf-8" },
-                        method: 'PATCH',
-                        body: JSON.stringify({
-                          "title": taskTitle,
-                          "note": taskText,
-                          "importance": 'high',
-                          "dueDate": taskDueDate,
-                        })     
-            })
-                    render()
-                    getFinshedTasks()
-      
-                  } else {
-                    fetch(server + 'tasks/' + taskId, {
-                      headers: { "Content-Type": "application/json; charset=utf-8" },
-                        method: 'PATCH',
-                        body: JSON.stringify({
-                          "title": taskTitle,
-                          "note": taskText,
-                          "importance": 'done',
-                          "dueDate": taskDueDate,
-                        })     
-            })
-                    render()
-                    getFinshedTasks()
-                  }  
-                })              
-      }
-    });  
-  })  
-}
-
-let sortFinished = document.querySelector('.sortFinished');
-    sortFinished.addEventListener('click', function() {
-      render()
-      getFinshedTasks()
-    })
-
-// show all Tasks
-let sortAll = document.querySelector('.sortAll');
-sortAll.addEventListener('click', function() {
-  render()
-  getData()
-})
-
-//show pending Tasks
-
-function getPendingTasks() {
-  fetch(server + 'tasks')
-  .then(function(response) {
-    return response.json();
-  })
-  .then(function(data) {
-    data.forEach(function(task) {
-      if (task.importance != 'done') {
-          const taskId = task._id;
-          const taskTitle = task.title;
-          const taskText = task.note;
-          const importance = task.importance;
-          let dueDate = task.dueDate
-          let newDate = new Date(dueDate)
-          let day = newDate.getDate();
-          let month = newDate.getMonth() + 1;
-          let year = newDate.getFullYear();
-          let showDate = day + '.' + month + '.' + year;
-          let months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
-          let li = document.createElement('li');
-                li.className = "listItem";
-                li.innerHTML = '<div class="listWrapper">' +
-                '<div class="calendar">' +
-                '<div class="calendarDay">' + day + '</div>' +
-                '<div class="calendarMonth">' + months[newDate.getMonth()] + '</div>' +
-                '<div class="calendarYear">' + year + '</div>' +
-      
-                '</div>' +
-                '<div class= "check"></div>' +
-                '<div class= "listTitle">' + task.title + '</div>' + 
-                '<div class="listRight">' +
-          
-                '</div>'+
-                '<div class= "delete"></div>' +
-                '</div>';
-                list.appendChild(li);
-                // Delete Task
-                li.querySelector('.delete').addEventListener('click', function () {
-                  var check = confirm('Wollen Sie diesen Eintrag wirklich löschen?');
-                  if (check === false) {} else {
-                    fetch(server + 'tasks/' + taskId, {
-                      method: 'DELETE',
-          })
-                  .then(res => res.text()) // or res.json()
-                  .then(res => console.log(res))
-      
-                  render()
-                  getPendingTasks()
-                  } 
-                });
-      
-                // Check for finished Tasks
-                if (importance === 'done') {
-                  li.querySelector('.check').style.backgroundImage = 'url(../app/img/check.png)';
-                }
-              
-                // make Task checked
-                li.querySelector('.check').addEventListener('click', function () {
-                  if (importance === 'done') {
-                    fetch(server + 'tasks/' + taskId, {
-                      headers: { "Content-Type": "application/json; charset=utf-8" },
-                        method: 'PATCH',
-                        body: JSON.stringify({
-                          "title": taskTitle,
-                          "note": taskText,
-                          "importance": 'high',
-                          "dueDate": taskDueDate,
-                        })     
-            })
-                    render()
-                    getPendingTasks()
-      
-                  } else {
-                    fetch(server + 'tasks/' + taskId, {
-                      headers: { "Content-Type": "application/json; charset=utf-8" },
-                        method: 'PATCH',
-                        body: JSON.stringify({
-                          "title": taskTitle,
-                          "note": taskText,
-                          "importance": 'done',
-                          "dueDate": dueDate,
-                        })     
-            })
-                    render()
-                    getPendingTasks()
-                  }  
-                })           
-      }
-    });  
-  })  
-}
-
-let sortPendeing = document.querySelector('.sortPending');
-sortPendeing.addEventListener('click', function() {
-      render()
-      getPendingTasks()
-    })
