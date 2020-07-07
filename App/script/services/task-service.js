@@ -6,7 +6,7 @@ class TaskService {
         return await httpService.ajax('POST', server, { name: task });
     }
     async getTasks() {
-        return await httpService.ajax('GET', server, undefined);
+        return await httpService.ajax('GET', server);
     }
     async getSingleTask(id) {
         return await httpService.ajax('GET', server , undefined);
@@ -20,3 +20,6 @@ class TaskService {
 }
 
 export const taskService = new TaskService();
+
+const getTask = new TaskService
+console.log(getTask.getTasks)

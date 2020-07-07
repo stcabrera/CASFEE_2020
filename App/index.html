@@ -4,6 +4,14 @@
     <link rel="stylesheet" type="text/css" href="style/style.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+    <script id="task-list-template" type="text/x-handlebars-template">
+        <ul class="people_list">
+            {{#each tasks}}
+              <li>{{title}} {{note}}</li>
+            {{/each}}
+          </ul>
+    </script>
     <title>Document</title>
 </head>
 <body>
@@ -58,13 +66,14 @@
                     <div class="sortButton">By Importance</div>
                 </div>               
             </div> 
-            <ul class="list">       
+            <ul id="list">       
             </ul>
         </section>
         <section class="bottom"></section>
     </div>
     
     <script src="script/script.js"></script>
-    <script src="script/style.js"></script>
+    <script src="script/handlebars.js"></script>
+    <script type="module" src="script//services/task-service.js"></script>
 </body>
 </html>

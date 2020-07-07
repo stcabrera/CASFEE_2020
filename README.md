@@ -1,7 +1,6 @@
 # CASFEE_2020
 ## Projekt 1_Stephan Cabrera
 
-![Alt text](/App/img/noteApp.png?raw=true "Title")
 
 ## Installation
 
