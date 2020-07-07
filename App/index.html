@@ -1,19 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <link rel="stylesheet" type="text/css" href="style/style.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
     <script id="task-list-template" type="text/x-handlebars-template">
-        <ul class="people_list">
             {{#each tasks}}
-              <li>{{title}} {{note}}</li>
-            {{/each}}
-          </ul>
+            <li class="listItem">
+                <div class="listWrapper">
+                    <div class="calendar">
+                        <div class="calendarDay"> yyy </div>
+                        <div class="calendarMonth"> xxx </div>
+                        <div class="calendarYear"></div>
+                    </div>
+                    <div class= "check"></div>
+                    <div class= "listTitle">{{title}}</div>
+                    <div class= "edit"></div>
+                    <div class= "delete"></div>
+                </div>
+            </li>
+            {{/each}} 
     </script>
     <title>Document</title>
 </head>
+
 <body>
     <div class="taskFullview">
         <div class="taskFullview__box"></div>
@@ -24,30 +36,27 @@
             <div class="FormBlock">
                 <label>Title<input type="text" id="title"></label>
             </div>
-           <div class="FormBlock">
-            <label>Inhalt<input type="text" id="note"></label>
-        </div>
-           <div class="FormBlock">
-            <label>Wichtigkeit<br>
-                <select id="importance">
-                    <option value="high">High</option>
-                    <option value="medium">Medium</option>
-                    <option value="low">Low</option>
-                  </select>
-                        
-            </label>
-        </div>
-           <div class="FormBlock">
-            <label>Erledigt bis:</label>
-            <input type="date" id="date">
-            <label>Erstellt am:<input type="text" id="today"></label> 
-        </div>
-           
-           <button id="save">Save</button>
-           <button id="update">Update</button>
+            <div class="FormBlock">
+                <label>Inhalt<input type="text" id="note"></label>
+            </div>
+            <div class="FormBlock">
+                <label>Wichtigkeit<br>
+                    <select id="importance">
+                        <option value="high">High</option>
+                        <option value="medium">Medium</option>
+                        <option value="low">Low</option>
+                    </select>
+                </label>
+            </div>
+            <div class="FormBlock">
+                <label>Erledigt bis:</label>
+                <input type="date" id="date">
+                <label>Erstellt am:<input type="text" id="today"></label>
+            </div>
+            <button id="save">Save</button>
+            <button id="update">Update</button>
         </div>
     </div>
-    
     <div id="wrapper" class="flex_column">
         <section class="top">
             <button id="add">Create new Note</button>
@@ -59,21 +68,21 @@
                     <div class="sortButton sortFinished">finished</div>
                     <div class="sortButton sortPending">pending</div>
                     <div class="sortButton sortAll">all</div>
-                </div> 
+                </div>
                 <div class="sortTasks">
                     <div class="sortButton">By finish Date</div>
                     <div class="sortButton"> By created Date</div>
                     <div class="sortButton">By Importance</div>
-                </div>               
-            </div> 
-            <ul id="list">       
+                </div>
+            </div>
+            <ul id="list">
             </ul>
         </section>
         <section class="bottom"></section>
     </div>
-    
     <script src="script/script.js"></script>
     <script src="script/handlebars.js"></script>
     <script type="module" src="script//services/task-service.js"></script>
 </body>
+
 </html>

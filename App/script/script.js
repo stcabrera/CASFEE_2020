@@ -19,8 +19,25 @@ button.addEventListener("click", function(){
 closeButton.addEventListener("click", function(){document.querySelector('#modalForm').style.left = '-450px';});
 
 
-//get Data from API
+(function getData() {
+  fetch('http://localhost:3000/tasks')
+      .then(function (response) {
+          return response.json();
+      })
+      .then(function (data) {
+          const tasks = { tasks: data }
+          console.log(tasks)
+          renderTasks(tasks)
+      });
+})();
 
+function renderTasks(tasks) {
+  let source = document.querySelector('#task-list-template').innerHTML
+  let template = Handlebars.compile(source);
+  let result = template(tasks);
+  let list = document.querySelector('#list')
+  list.innerHTML = result
+}
 
 
 //Push Data to API
@@ -52,6 +69,4 @@ fetch("http://localhost:3000/tasks", requestOptions)
   .then(response => response.text())
   .then(result => console.log('Task pushed'))
   .catch(error => console.log('error', error));
-
-  getData()
 }
