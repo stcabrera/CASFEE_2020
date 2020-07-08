@@ -1,7 +1,7 @@
 let styleButton = document.querySelector('#colorChanger');
 styleButton.addEventListener('click', changeColor);
 
-function changeColor(){
+function changeColor() {
     let body = document.body;
     let top = document.querySelector('.top');
     let list = document.querySelector('.list');

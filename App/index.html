@@ -8,18 +8,27 @@
     <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
     <script id="task-list-template" type="text/x-handlebars-template">
         {{#each tasks}}
-        <li class="listItem">
-            <div class="listWrapper">
-                <div class="calendar">
-                    <div class="calendarDay"> 13 </div>
-                    <div class="calendarMonth"> sep </div>
-                    <div class="calendarYear">2020</div>
-                </div>
-                <div class="check"></div>
-                <div class="listTitle">{{title}}</div>
-                <div class="edit"></div>
-                <div class="delete"></div>
+        <li class="listItem {{importance}}">
+            <div class="calendar">
+                <div class="calendarDay"> 13 </div>
+                <div class="calendarMonth"> sep </div>
+                <div class="calendarYear">2020</div>
             </div>
+            <div class="listWrapper">
+                <div class="listTitle">{{title}}</div>
+                <div class="listContent">{{note}}</div>
+                <div class="listActions">
+                    <div class="check"></div>
+                    <div class="listActions_right">
+                        <div class="edit"></div>
+                        <div class="delete"></div>
+                    </div>
+                </div>
+            </div>
+            <label class="importance">
+                {{importance}}
+            </label>
+
         </li>
         {{/each}}
     </script>
@@ -59,16 +68,14 @@
     </div>
     <div id="wrapper" class="flex_row">
         <section class="top">
-            <button id="add">Create new Note</button>
+            <button id="add">Create new Task</button>
+            <button class="filter">Show finished</button>
+            <button class="filter">Show pending</button>
+            <button class="filter">Show all</button>
             <button id="colorChanger">Dark/Light Mode</button>
         </section>
         <section class="center">
             <div id="sortBlock">
-                <div id="sortDone">
-                    <div class="sortButton sortFinished">finished</div>
-                    <div class="sortButton sortPending">pending</div>
-                    <div class="sortButton sortAll">all</div>
-                </div>
                 <div class="sortTasks">
                     <div class="sortButton">By finish Date</div>
                     <div class="sortButton"> By created Date</div>

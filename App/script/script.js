@@ -42,6 +42,7 @@ function renderTasks(tasks) {
     let result = template(tasks);
     let list = document.querySelector('#list')
     list.innerHTML = result
+    console.log(tasks.title)
 }
 
 //Push Data to API
