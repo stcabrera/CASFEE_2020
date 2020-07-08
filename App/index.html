@@ -16,7 +16,7 @@
             </div>
             <div class="listWrapper">
                 <div class="listTitle">{{title}}</div>
-                <div class="listContent">{{note}}</div>
+                <div class="listContent">{{note}} {{created}}</div>
                 <div class="listActions">
                     <div class="check"></div>
                     <div class="listActions_right">
@@ -25,10 +25,6 @@
                     </div>
                 </div>
             </div>
-            <label class="importance">
-                {{importance}}
-            </label>
-
         </li>
         {{/each}}
     </script>

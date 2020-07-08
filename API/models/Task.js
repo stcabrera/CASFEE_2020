@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const taskSchema = mongoose.Schema({
-    title : {
+    title: {
         type: String,
         required: true
     },
@@ -13,6 +13,9 @@ const taskSchema = mongoose.Schema({
         required: true
     },
     dueDate: {
+        type: String
+    },
+    created: {
         type: String
     }
 });

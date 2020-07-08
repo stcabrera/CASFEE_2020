@@ -42,7 +42,7 @@ function renderTasks(tasks) {
     let result = template(tasks);
     let list = document.querySelector('#list')
     list.innerHTML = result
-    console.log(tasks.title)
+    console.log(tasks)
 }
 
 //Push Data to API
@@ -73,6 +73,6 @@ function pushData() {
 
     fetch("http://localhost:3000/tasks", requestOptions)
         .then(response => response.text())
-        .then(result => console.log('Task pushed'))
+        .then(result => console.log('Task pushed' + raw))
         .catch(error => console.log('error', error));
 }

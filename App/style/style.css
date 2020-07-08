@@ -361,26 +361,24 @@ select:focus {
     width: 40px;
     margin: -5px 0 0 -5px;
     background: #606060;
+    border-radius: 5px;
+    color: #9d9a9a;
 }
 
 .calendarDay {
     text-align: center;
     padding-top: 5px;
-    color: white;
     font-size: 1.5em;
     border-radius: 10px 0 0 0;
 }
 
 .calendarMonth {
     text-align: center;
-    color: white;
-    padding: 2px;
 }
 
 .calendarYear {
     text-align: center;
-    color: white;
     font-size: 0.6em;
-    padding: 3px;
+    padding-bottom: 3px;
     border-radius: 0 0 0 10px;
 }
