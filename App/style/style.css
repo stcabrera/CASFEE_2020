@@ -3,55 +3,68 @@
     margin: 0;
     padding: 0;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-  }
-  body {
-    background: white;
-  }
-  label {
+}
+
+body {
+    padding: 50px;
+    background: #e6e6f7;
+    background: linear-gradient(90deg, rgba(255, 255, 255, 1) 0%, rgba(203, 203, 255, 1) 35%, rgba(182, 220, 255, 1) 97%);
+    overflow: hidden;
+}
+
+label {
     margin-top: 10px;
-  }
-  #wrapper {
-    width: 100%;
-    height: 100vh;
-  }
-  .flex_column {
+}
+
+#wrapper {
+    box-shadow: 5px 5px 40px #2a2a2a;
+    height: 90vh;
+}
+
+.flex_row {
     display: flex;
-    flex-direction: column;
-  }
-  .top {
-    background: rgb(211, 211, 211);
-    flex-grow: 1;
-    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+}
+
+.top {
     justify-content: space-between;
-    max-height: 100px;
-  }
-  .sortTasks, #sortDone {
+    background: white;
+    width: 200px;
+    text-align: center;
+    z-index: 9;
+}
+
+.sortTasks,
+#sortDone {
     display: flex
-  }
-  .center {
+}
+
+.center {
     flex-grow: 6;
-  }
-  .bottom {
-    background: rgb(49, 49, 49);
-    flex-grow: 1;
-  }
-  #modalForm {
-    background: white;
-    position: fixed;
-    left: -450px;
-    height: 100vh;
-    width: 400px;
-    transition: all linear 0.3s;
-    box-shadow: 1px 1px 20px;
-  }
-  .modalFormInner {
-    width: calc(100% - 30px);
-    height: 100vh;
-    background: white;
-    margin: 30px;
     padding: 20px;
-  }
-  input, select {
+}
+
+.bottom {}
+
+#modalForm {
+    position: fixed;
+    height: 90vh;
+    width: 200px;
+    left: 50px;
+    transition: all linear 0.3s;
+    z-index: 0;
+}
+
+.modalFormInner {
+    height: 100%;
+    background: white;
+    padding: 20px;
+    border-radius: 0 10px 10px 0;
+}
+
+input,
+select {
     display: block;
     box-shadow: inset 1px 1px 10px #b1b1b1;
     border: none;
@@ -61,36 +74,40 @@
     padding: 10px;
     margin: 10px 0;
 }
-input:focus, select:focus {
-  outline: none;
+
+input:focus,
+select:focus {
+    outline: none;
 }
-  #add {
+
+#add {
     padding: 10px;
     cursor: pointer;
-    background: green;
-    border: none;
+    background: none;
     margin: 20px;
-    color: white;
-    font-size: 1.2em;
+    color: #b3b3b3;
     outline: none;
     border-radius: 10px;
-  }
-  #colorChanger {
+    border: 1px solid;
+}
+
+#colorChanger {
     padding: 10px;
     cursor: pointer;
     background: #7f807f;
     border: none;
     margin: 20px;
     color: white;
-    font-size: 1.2em;
     border-radius: 10px;
-  }
-  #colorChanger:focus {
+}
+
+#colorChanger:focus {
     outline: none;
-  }
-  .closeForm {
+}
+
+.closeForm {
     position: absolute;
-    left: 370px;
+    left: 160px;
     top: 0;
     background: #a75858;
     padding: 10px;
@@ -98,8 +115,11 @@ input:focus, select:focus {
     font-family: sans-serif;
     cursor: pointer;
     border-radius: 0 0 0 50%;
-  }
-  #save, #update {
+    transition: all linear 0.3s;
+}
+
+#save,
+#update {
     background: #71a771;
     margin-top: 10px;
     margin-left: auto;
@@ -107,27 +127,33 @@ input:focus, select:focus {
     display: block;
     border: none;
     padding: 10px;
-    width: 200px;
+    width: 100%;
     border-radius: 10px;
     cursor: pointer;
-  }
-  .list {
-    display: flex;
-    flex-direction: column;
-    max-width: 1000px;
-    margin: auto;
-    list-style: none; 
-  }
-  .listItem {
+}
+
+#list {
+    list-style: none;
+    display: grid;
+    grid-template-columns: 200px 200px 200px 200px;
+    grid-template-rows: 200px 200px 200px;
+    column-gap: 10px;
+    row-gap: 15px;
+    justify-content: center;
+}
+
+.listItem {
     margin-top: 5px;
     padding: 10px;
-    background: rgba(208, 208, 208, 0.26);
+    background: rgb(159, 164, 192);
     border-radius: 20px 10px 10px 10px;
-  }
-  .listWrapper {
+}
+
+.listWrapper {
     display: flex;
-  }
-  .check {
+}
+
+.check {
     width: 30px;
     height: 30px;
     border-radius: 50%;
@@ -135,17 +161,20 @@ input:focus, select:focus {
     cursor: pointer;
     color: #4d4c4c;
     box-shadow: inset 1px 1px 5px;
+    background: #d6d9e9;
     background-position: center;
     background-size: 100%;
-  }
-  .listLeft {
+}
+
+.listLeft {
     min-width: 60%;
-  }
-  .edit {
+}
+
+.edit {
     box-shadow: -1px 1px 5px rgba(0, 128, 0, 0.64);
     width: 50px;
     height: 50px;
-    border-radius: 10px 0  0 10px;
+    border-radius: 10px 0 0 10px;
     cursor: pointer;
     background-image: url(../img/edit.png);
     background-position: center;
@@ -153,12 +182,14 @@ input:focus, select:focus {
     background-size: 50%;
     background-repeat: no-repeat;
     transition: all linear 0.2s;
-  }
-  .edit:hover {
-    box-shadow : -3px 3px 10px  rgb(107, 182, 107);
+}
+
+.edit:hover {
+    box-shadow: -3px 3px 10px rgb(107, 182, 107);
     background-color: #ffffff;
-  }
-  .delete {
+}
+
+.delete {
     width: 50px;
     height: 50px;
     border-radius: 0 10px 10px 0;
@@ -171,105 +202,118 @@ input:focus, select:focus {
     background-size: 100%;
     background-size: 50%;
     background-repeat: no-repeat;
-  }
-  .delete:hover {
-    box-shadow : 3px 3px 10px red;
+}
+
+.delete:hover {
+    box-shadow: 3px 3px 10px red;
     background-color: #ffffff;
-  }
-  .listTitle {
+}
+
+.listTitle {
     text-transform: uppercase;
-    background: #d5d8dd;
     flex-grow: 2;
     border-radius: 20px;
-    padding: 20px 50px;
     font-weight: bold;
-    color: dimgrey;
+    color: rgb(255, 255, 255);
     cursor: pointer;
     margin: 0 50px;
-  }
-  
-  #sortBlock {
+}
+
+#sortBlock {
     display: flex;
     justify-content: space-between;
-    background: grey;
-    max-width: 1000px;
+    max-width: 800px;
     margin: auto;
-    padding: 10px;
-  }
-  .sortButton {
-    background: rgb(177, 177, 177);
+}
+
+.sortButton {
+    background: #9fa4c0;
     padding: 10px;
     cursor: pointer;
     transition: all linear 0.2s;
     margin-right: 3px;
     font-size: 0.8em;
     color: white;
-  }
-  .sortButton:hover {
+}
+
+.sortButton:hover {
     background: rgb(223, 223, 223);
     transition: all linear 0.2s;
     color: rgb(105, 105, 105);
-  }
-  .darkMode {
+}
+
+.darkMode {
     background: rgb(51, 51, 51);
-  }
-  .darkModeTop {
+}
+
+.darkModeTop {
     background: rgb(22, 22, 22);
-  }
-  .darkModelist {
+}
+
+.darkModelist {
     color: rgb(167, 167, 167);
-  }
-  .darkModeCheck {
+}
+
+.darkModeCheck {
     color: black;
     background: none;
-  }
+}
+
 .taskFullview {
-  height: 100vh;
-  width: 100%;
-  background: rgba(0, 0, 0, 0.9);
-  position: fixed;
-  display: none;
+    height: 100vh;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    position: fixed;
+    display: none;
 }
+
 .taskFullview__box {
-  width: 500px;
-  height: 400px;
-  background: #d7e5c4;
-  margin: auto;
+    width: 500px;
+    height: 400px;
+    background: #d7e5c4;
+    margin: auto;
 }
+
 .taskDetailList {
-  list-style: none;
+    list-style: none;
 }
+
 .taskFullview__Title {
-  background: #a6c084;
-  padding: 20px;
-  text-align: center;
-  color: white;
-  font-weight: bold;
-  font-size: 1.8em;
-  font-family: monospace;
+    background: #a6c084;
+    padding: 20px;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    font-size: 1.8em;
+    font-family: monospace;
 }
-.calendar  {
-  width: 50px;
-  margin: -10px 0 0 -10px;
+
+.calendar {
+    width: 80px;
+    margin: -10px 0 -10px -10px;
 }
+
 .calendarDay {
-  text-align: center;
-  padding-top: 5px;
-  color: white;
-  font-size: 1.5em;
-  background: #303030;
-  border-radius: 20px 0 0 0;
+    text-align: center;
+    padding-top: 5px;
+    color: white;
+    font-size: 1.5em;
+    background: #303030;
+    border-radius: 10px 0 0 0;
 }
+
 .calendarMonth {
-  text-align: center;
-  color: white;
-  background: #3c3c3c;
-  padding: 2px;
+    text-align: center;
+    color: white;
+    background: #3c3c3c;
+    padding: 2px;
 }
+
 .calendarYear {
-  text-align: center;
-  color: white;
-  font-size: 0.6em;
-  padding: 3px;
-  background: #5b5b6b;
+    text-align: center;
+    color: white;
+    font-size: 0.6em;
+    padding: 3px;
+    background: #5b5b6b;
+    border-radius: 0 0 0 10px;
 }
