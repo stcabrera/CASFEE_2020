@@ -234,6 +234,11 @@ select:focus {
     margin-left: 10px;
 }
 
+.done {
+    background-image: url(../img/check.png);
+    background-size: 100%;
+}
+
 .listLeft {
     min-width: 60%;
 }

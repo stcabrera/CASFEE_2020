@@ -1,29 +1,10 @@
-let button = document.querySelector('#add');
-let closeButton = document.querySelector('.closeForm');
-let list = document.querySelector('.list');
+let list = document.querySelector('#list');
 const server = 'http://localhost:3000/';
 let date = new Date();
 let day = date.getDate();
 let month = date.getMonth() + 1;
 let year = date.getFullYear();
-let today = day + '.' + month + '.' + year
-
-document.querySelector('.taskFullview').addEventListener('click', function() { location.reload() })
-
-button.addEventListener("click", function() {
-    document.querySelector('#modalForm').style.left = '250px';
-    document.querySelector('#modalForm').style.width = '400px';
-    document.querySelector('#save').style.display = 'block';
-    document.querySelector('#update').style.display = 'none';
-    document.querySelector('.closeForm').style.left = '370px';
-    document.querySelector('#today').value = today;
-});
-closeButton.addEventListener("click", function() {
-    document.querySelector('#modalForm').style.left = '50px';
-    document.querySelector('#modalForm').style.width = '200px';
-    document.querySelector('.closeForm').style.left = '160px';
-});
-
+let today = day + '.' + month + '.' + year;
 
 (function getData() {
     fetch('http://localhost:3000/tasks')
@@ -61,7 +42,8 @@ function pushData() {
         "note": document.querySelector('#note').value,
         "importance": document.querySelector('#importance').value,
         "dueDate": document.querySelector('#date').value,
-        "created": document.querySelector('#today').value
+        "created": document.querySelector('#today').value,
+        "done": 'undone'
     });
 
     const requestOptions = {
@@ -76,3 +58,40 @@ function pushData() {
         .then(result => console.log('Task pushed' + raw))
         .catch(error => console.log('error', error));
 }
+
+
+// Check Task
+
+list.addEventListener('click', event => {
+    const myHeaders = new Headers();
+    if (event.target.classList.contains('check')) {
+        const itemKey = event.target.parentElement.parentElement.parentElement.id;
+
+        if (event.target.classList.contains('undone')) {
+            myHeaders.append("Content-Type", "application/json");
+            const requestOptions = {
+                method: 'PATCH',
+                headers: myHeaders,
+                body: JSON.stringify({ "done": 'done' }),
+                redirect: 'follow'
+            };
+
+            fetch("http://localhost:3000/tasks/" + itemKey, requestOptions)
+            location.reload()
+
+        } else {
+            myHeaders.append("Content-Type", "application/json");
+            const requestOptions = {
+                method: 'PATCH',
+                headers: myHeaders,
+                body: JSON.stringify({ "done": 'undone' }),
+                redirect: 'follow'
+            };
+
+            fetch("http://localhost:3000/tasks/" + itemKey, requestOptions)
+            location.reload()
+
+        }
+
+    }
+});

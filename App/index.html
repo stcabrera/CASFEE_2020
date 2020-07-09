@@ -8,7 +8,7 @@
     <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
     <script id="task-list-template" type="text/x-handlebars-template">
         {{#each tasks}}
-        <li class="listItem {{importance}}">
+        <li id="{{_id}}" class="listItem {{importance}}">
             <div class="calendar">
                 <div class="calendarDay"> 13 </div>
                 <div class="calendarMonth"> sep </div>
@@ -18,7 +18,7 @@
                 <div class="listTitle">{{title}}</div>
                 <div class="listContent">{{note}} {{created}}</div>
                 <div class="listActions">
-                    <div class="check"></div>
+                    <div class="check {{done}}"></div>
                     <div class="listActions_right">
                         <div class="edit"></div>
                         <div class="delete"></div>
