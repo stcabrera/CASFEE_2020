@@ -67,17 +67,18 @@
     <div id="wrapper" class="flex_row">
         <section class="top">
             <button id="add">Create new Task</button>
-            <button class="filter">Show finished</button>
-            <button class="filter">Show pending</button>
-            <button class="filter">Show all</button>
+            <button id="finished" class="filter">Show finished</button>
+            <button id="pending" class="filter">Show pending</button>
+            <button id="all" class="filter">Show all</button>
             <button id="colorChanger">Dark/Light Mode</button>
         </section>
         <section class="center">
             <div id="sortBlock">
                 <div class="sortTasks">
-                    <div id="sortASC" class="sortButton">By finish Date</div>
-                    <div id="sortDESC" class="sortButton"> By created Date</div>
-                    <div class="sortButton">By Importance</div>
+                    <div id="sortASC" class="sortButton">A-Z</div>
+                    <div id="sortFinishDate" class="sortButton">by finish date</div>
+                    <div id="sortcreatedDate" class="sortButton">by created date</div>
+                    <div id="sortIMP" class="sortButton">By Importance</div>
                 </div>
             </div>
             <div id="container">
@@ -85,7 +86,9 @@
         </section>
         <section class="bottom"></section>
     </div>
+    <script src="script/filter.js"></script>
     <script src="script/controller.js"></script>
+    <script src="script/view.js"></script>
 
 
     <script src="script/handlebars.js"></script>

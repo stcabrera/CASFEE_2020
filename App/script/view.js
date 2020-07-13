@@ -1,14 +1,22 @@
-let list = document.querySelector('#list')
-
 //Push Data to API
-const saveButton = document.querySelector('#save')
-saveButton.addEventListener('click', pushData)
+
+
 saveButton.addEventListener("click", function() {
-    document.querySelector('#modalForm').style.top = '-100vh'
+    event.preventDefault();
+    document.querySelector('#modalForm').style.top = '-100vh';
+    event.stopPropagation();
 });
 
+document.querySelector('#sortASC').addEventListener('click', asc)
+document.querySelector('#sortFinishDate').addEventListener('click', FinishDate)
+document.querySelector('#sortcreatedDate').addEventListener('click', createdDate)
+document.querySelector('#sortIMP').addEventListener('click', byImportance)
+document.querySelector('#finished').addEventListener('click', () => { console.log('finished') })
+document.querySelector('#pending').addEventListener('click', () => { console.log('pending') })
+document.querySelector('#all').addEventListener('click', () => { console.log('all') })
+
 // Check Task
-list.addEventListener('click', event => {
+container.addEventListener('click', event => {
     if (event.target.classList.contains('check')) {
         const itemKey = event.target.parentElement.parentElement.parentElement.id
         if (event.target.classList.contains('undone')) {
@@ -18,7 +26,7 @@ list.addEventListener('click', event => {
                 body: JSON.stringify({ "done": 'done' }),
             })
 
-            location.reload()
+            setTimeout(getData, 10)
 
         } else {
             fetch(server + itemKey, {
@@ -26,10 +34,11 @@ list.addEventListener('click', event => {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ "done": 'undone' }),
             })
-            location.reload()
+            setTimeout(getData, 10)
+
         }
     }
 });
 
 // delete Task
-list.addEventListener('click', deleteTask)
+container.addEventListener('click', deleteTask)

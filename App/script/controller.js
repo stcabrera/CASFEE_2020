@@ -1,54 +1,13 @@
 let taskData = [];
-const buttonASC = document.querySelector('#sortASC');
-const buttonDESC = document.querySelector('#sortDESC');
 const container = document.querySelector('#container');
 const source = document.querySelector('#task-list-template').innerHTML;
 const template = Handlebars.compile(source);
-buttonASC.addEventListener('click', function() {
-    console.log('asc')
-    asc()
-})
-buttonDESC.addEventListener('click', function() {
-    console.log('desc')
-    desc()
-})
-
-
-
-function asc() {
-    function renderTasksASC() {
-        container.innerHTML = template(tasksSorted());
-    }
-
-    function compareTasks(s1, s2) {
-        return s2.title + s1.title;
-    }
-
-    function tasksSorted() {
-        return [...taskData].sort(compareTasks);
-    }
-    renderTasksASC()
-}
-
-function desc() {
-    function renderTasksASC() {
-        container.innerHTML = template(tasksSorted());
-    }
-
-    function compareTasks(s1, s2) {
-        return s2.title - s1.title;
-    }
-
-    function tasksSorted() {
-        return [...taskData].sort(compareTasks);
-    }
-    renderTasksASC()
-}
-
 
 
 const server = 'http://localhost:3000/tasks/';
-(function getData() {
+getData()
+
+function getData() {
     fetch(server)
         .then(function(response) {
             return response.json()
@@ -58,11 +17,9 @@ const server = 'http://localhost:3000/tasks/';
 
             taskData = tasks.tasks
             console.log(taskData)
-            desc()
-
+            asc()
         });
-
-})();
+};
 
 /*
 function renderTasks(tasks) {
@@ -73,21 +30,30 @@ function renderTasks(tasks) {
     list.innerHTML = result
 }
 */
+let saveButton = document.querySelector('#save')
+saveButton.addEventListener('click', pushData)
+
 function pushData() {
+    const importanceValue = document.querySelector('#importance').value;
+    console.log(importanceValue)
     fetch(server, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
             "title": document.querySelector('#title').value,
             "note": document.querySelector('#note').value,
-            "importance": document.querySelector('#importance').value,
+            "importance": (function convert() {
+                if (importanceValue === 'high') { return 3 + ' high' };
+                if (importanceValue === 'medium') { return 2 + ' medium' };
+                if (importanceValue === 'low') { return 1 + ' low' };
+            })(),
             "dueDate": document.querySelector('#date').value,
             "created": document.querySelector('#today').value,
             "done": 'undone'
         })
     })
 
-
+    location.reload()
 }
 
 function deleteTask() {
@@ -96,7 +62,7 @@ function deleteTask() {
         fetch(server + itemKey, {
             method: 'DELETE'
         })
-        location.reload()
+        setTimeout(getData, 10)
     }
 }
 // update Tasks
