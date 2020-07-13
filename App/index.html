@@ -7,26 +7,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
     <script id="task-list-template" type="text/x-handlebars-template">
-        {{#each tasks}}
-        <li id="{{_id}}" class="listItem {{importance}}">
-            <div class="calendar">
-                <div class="calendarDay"> 13 </div>
-                <div class="calendarMonth"> sep </div>
-                <div class="calendarYear">2020</div>
-            </div>
-            <div class="listWrapper">
-                <div class="listTitle">{{title}}</div>
-                <div class="listContent">{{note}} {{created}}</div>
-                <div class="listActions">
-                    <div class="check {{done}}"></div>
-                    <div class="listActions_right">
-                        <div class="edit"></div>
-                        <div class="delete"></div>
+        <ul id="list">
+            {{#each this}}
+            <li id="{{_id}}" class="listItem {{importance}}">
+                <div class="calendar">
+                    <div class="calendarDay"> 13 </div>
+                    <div class="calendarMonth"> sep </div>
+                    <div class="calendarYear">2020</div>
+                </div>
+                <div class="listWrapper">
+                    <div class="listTitle">{{title}}</div>
+                    <div class="listContent">{{note}} {{created}}</div>
+                    <div class="listActions">
+                        <div class="check {{done}}"></div>
+                        <div class="listActions_right">
+                            <div class="edit"></div>
+                            <div class="delete"></div>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </li>
-        {{/each}}
+            </li>
+            {{/each}}
+        </ul>
     </script>
     <title>Document</title>
 </head>
@@ -73,21 +75,22 @@
         <section class="center">
             <div id="sortBlock">
                 <div class="sortTasks">
-                    <div class="sortButton">By finish Date</div>
-                    <div class="sortButton"> By created Date</div>
+                    <div id="sortASC" class="sortButton">By finish Date</div>
+                    <div id="sortDESC" class="sortButton"> By created Date</div>
                     <div class="sortButton">By Importance</div>
                 </div>
             </div>
-            <ul id="list">
-            </ul>
+            <div id="container">
+            </div>
         </section>
         <section class="bottom"></section>
     </div>
     <script src="script/controller.js"></script>
-    <script src="script/view.js"></script>
+
+
     <script src="script/handlebars.js"></script>
     <script src="script/style.js"></script>
-    <script type="module" src="script/controller.js"></script>
+
 </body>
 
 </html>
