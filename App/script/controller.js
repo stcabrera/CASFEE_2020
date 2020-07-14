@@ -9,6 +9,7 @@ function getData() {
         .then(function(data) {
             const tasks = { tasks: data }
             taskData = tasks.tasks
+            console.log(taskData)
             asc()
         });
 };
@@ -21,6 +22,7 @@ function pushData() {
     let month = dDate.getMonth() + 1
     let year = dDate.getFullYear();
     let today = day + '.' + month + '.' + year;
+    let months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
     fetch(server, {
         method: 'POST',
@@ -35,10 +37,10 @@ function pushData() {
             })(),
             "dueDate": dDate,
             "dueDateDay": day,
-            "dueDateMonth": month,
+            "dueDateMonth": months[dDate.getMonth()],
             "dueDateYear": year,
             "created": today,
-            "done": 'undone'
+            "done": false
         })
     })
     location.reload()
@@ -46,22 +48,25 @@ function pushData() {
 
 function deleteTask() {
     if (event.target.classList.contains('delete')) {
-        const itemKey = event.target.parentElement.parentElement.parentElement.parentElement.id;
-        fetch(server + itemKey, {
-            method: 'DELETE'
-        })
-        setTimeout(getData, 10)
+        let confirmDelete = confirm('Wollen Sie diesen Task wirklich löschen');
+        if (confirmDelete == true) {
+            const itemKey = event.target.parentElement.parentElement.parentElement.parentElement.id;
+            fetch(server + itemKey, {
+                method: 'DELETE'
+            })
+            setTimeout(getData, 10)
+        }
     }
 }
 
 function checkTask(event) {
     if (event.target.classList.contains('check')) {
         const itemKey = event.target.parentElement.parentElement.parentElement.id
-        if (event.target.classList.contains('undone')) {
+        if (event.target.classList.contains('false')) {
             fetch(server + itemKey, {
                 method: 'PATCH',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ "done": 'done' }),
+                body: JSON.stringify({ "done": true }),
             })
 
             setTimeout(getData, 10)
@@ -70,7 +75,7 @@ function checkTask(event) {
             fetch(server + itemKey, {
                 method: 'PATCH',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ "done": 'undone' }),
+                body: JSON.stringify({ "done": false }),
             })
             setTimeout(getData, 10)
         }

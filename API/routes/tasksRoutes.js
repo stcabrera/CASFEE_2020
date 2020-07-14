@@ -26,7 +26,7 @@ router.post('/', (req, res) => {
         dueDateMonth: req.body.dueDateMonth,
         dueDateYear: req.body.dueDateYear,
         created: today,
-        done: 'undone'
+        done: false
     });
 
     task.save()

@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
     <script id="task-list-template" type="text/x-handlebars-template">
-        <ul id="list">
+        <ul id="list" class="grid">
             {{#each this}}
             <li id="{{_id}}" class="listItem {{importance}}">
                 <div class="calendar">
@@ -31,10 +31,63 @@
             {{/each}}
         </ul>
     </script>
+    <script id="task-list-done-template" type="text/x-handlebars-template">
+        <ul id="list" class="grid">
+            {{#each this}} {{#if done}}
+            <li id="{{_id}}" class="listItem {{importance}}">
+                <div class="calendar">
+                    <div class="calendarDay"> {{dueDateDay}} </div>
+                    <div class="calendarMonth"> {{dueDateMonth}} </div>
+                    <div class="calendarYear">{{dueDateYear}}</div>
+                </div>
+                <div class="listWrapper">
+                    <div class="listTitle">{{title}}</div>
+                    <div class="listContent">{{note}}</div>
+                    <div class="created">Erstellt am: {{created}}</div>
+                    <div class="listActions">
+                        <div class="check {{done}}"></div>
+                        <div class="listActions_right">
+                            <div class="edit"></div>
+                            <div class="delete"></div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            {{/if}} {{/each}}
+        </ul>
+    </script>
+    <script id="task-list-undone-template" type="text/x-handlebars-template">
+        <ul id="list" class="grid">
+            {{#each this}} {{#unless done}}
+            <li id="{{_id}}" class="listItem {{importance}}">
+                <div class="calendar">
+                    <div class="calendarDay"> {{dueDateDay}} </div>
+                    <div class="calendarMonth"> {{dueDateMonth}} </div>
+                    <div class="calendarYear">{{dueDateYear}}</div>
+                </div>
+                <div class="listWrapper">
+                    <div class="listTitle">{{title}}</div>
+                    <div class="listContent">{{note}}</div>
+                    <div class="created">Erstellt am: {{created}}</div>
+                    <div class="listActions">
+                        <div class="check {{done}}"></div>
+                        <div class="listActions_right">
+                            <div class="edit"></div>
+                            <div class="delete"></div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            {{/unless}} {{/each}}
+        </ul>
+    </script>
     <title>Document</title>
 </head>
 
 <body>
+    <div id="result"></div>
+    <div class="date"></div>
+    <div class="time"></div>
     <div class="taskFullview">
         <div class="taskFullview__box"></div>
     </div>
@@ -90,9 +143,6 @@
     <script src="script/filter.js"></script>
     <script src="script/controller.js"></script>
     <script src="script/view.js"></script>
-
-
-    <script src="script/handlebars.js"></script>
     <script src="script/style.js"></script>
 
 </body>

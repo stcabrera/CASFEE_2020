@@ -1,13 +1,20 @@
 class HttpService {
-    ajax(method, url, data, headers) {
-        const fetchHeaders = new Headers({'content-type': 'application/json', ...(headers || {})});
-        return fetch(url, {
+    ajax(method, data) {
+        return fetch(server, {
             method: method,
-            headers: fetchHeaders, 
+            headers: { 'content-type': 'application/json' },
             body: JSON.stringify(data)
-        }).then(x => {
-            return x.json();
+
+        }).then(function(data) {
+            const tasks = { tasks: data }
+            taskData = tasks.tasks
+            console.log(blub)
         });
     }
 }
-export const httpService = new HttpService();
+
+
+(function() {
+    new HttpService('GET');
+    //console.log(tasks)
+})();

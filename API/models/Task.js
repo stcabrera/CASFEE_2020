@@ -28,7 +28,7 @@ const taskSchema = mongoose.Schema({
         type: String
     },
     done: {
-        type: String
+        type: Boolean
     }
 });
 module.exports = mongoose.model('Tasks', taskSchema)
