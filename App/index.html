@@ -11,13 +11,14 @@
             {{#each this}}
             <li id="{{_id}}" class="listItem {{importance}}">
                 <div class="calendar">
-                    <div class="calendarDay"> 13 </div>
-                    <div class="calendarMonth"> sep </div>
-                    <div class="calendarYear">2020</div>
+                    <div class="calendarDay"> {{dueDateDay}} </div>
+                    <div class="calendarMonth"> {{dueDateMonth}} </div>
+                    <div class="calendarYear">{{dueDateYear}}</div>
                 </div>
                 <div class="listWrapper">
                     <div class="listTitle">{{title}}</div>
-                    <div class="listContent">{{note}} {{created}}</div>
+                    <div class="listContent">{{note}}</div>
+                    <div class="created">Erstellt am: {{created}}</div>
                     <div class="listActions">
                         <div class="check {{done}}"></div>
                         <div class="listActions_right">
@@ -41,7 +42,7 @@
         <div class="modalFormInner">
             <div class="closeForm">X</div>
             <div class="FormBlock">
-                <label>Title<input type="text" id="title"></label>
+                <label>Title<input type="text" id="title" required></label>
             </div>
             <div class="FormBlock">
                 <label>Inhalt<input type="text" id="note"></label>
@@ -58,7 +59,7 @@
             <div class="FormBlock">
                 <label>Erledigt bis:</label>
                 <input type="date" id="date">
-                <label>Erstellt am:<input type="text" id="today"></label>
+
             </div>
             <button id="save">Save</button>
             <button id="update">Update</button>

@@ -15,7 +15,7 @@ button.addEventListener("click", function() {
     document.querySelector('#save').style.display = 'block';
     document.querySelector('#update').style.display = 'none';
     document.querySelector('.closeForm').style.left = '370px';
-    document.querySelector('#today').value = today;
+
 });
 
 function changeColor() {

@@ -15,6 +15,15 @@ const taskSchema = mongoose.Schema({
     dueDate: {
         type: String
     },
+    dueDateDay: {
+        type: String
+    },
+    dueDateMonth: {
+        type: String
+    },
+    dueDateYear: {
+        type: String
+    },
     created: {
         type: String
     },

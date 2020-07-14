@@ -1,6 +1,12 @@
 const express = require('express');
 const router = express.Router();
 const Task = require('../models/Task');
+let date = new Date()
+let day = date.getDate()
+let month = date.getMonth() + 1
+let year = date.getFullYear()
+let today = day + '.' + month + '.' + year;
+
 
 // Get Tasks
 router.get('/', async(req, res) => {
@@ -16,7 +22,10 @@ router.post('/', (req, res) => {
         note: req.body.note,
         importance: req.body.importance,
         dueDate: req.body.dueDate,
-        created: req.body.today,
+        dueDateDay: req.body.dueDateDay,
+        dueDateMonth: req.body.dueDateMonth,
+        dueDateYear: req.body.dueDateYear,
+        created: today,
         done: 'undone'
     });
 

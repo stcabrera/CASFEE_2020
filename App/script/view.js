@@ -1,17 +1,13 @@
 //Push Data to API
 
 
-saveButton.addEventListener("click", function() {
-    event.preventDefault();
-    document.querySelector('#modalForm').style.top = '-100vh';
-    event.stopPropagation();
-});
+saveButton.addEventListener("click", () => { document.querySelector('#modalForm').style.top = '-100vh'; });
 
 document.querySelector('#sortASC').addEventListener('click', asc)
 document.querySelector('#sortFinishDate').addEventListener('click', FinishDate)
 document.querySelector('#sortcreatedDate').addEventListener('click', createdDate)
 document.querySelector('#sortIMP').addEventListener('click', byImportance)
-document.querySelector('#finished').addEventListener('click', () => { console.log('finished') })
+document.querySelector('#finished').addEventListener('click', justFinished)
 document.querySelector('#pending').addEventListener('click', () => { console.log('pending') })
 document.querySelector('#all').addEventListener('click', () => { console.log('all') })
 

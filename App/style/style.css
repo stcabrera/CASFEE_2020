@@ -300,6 +300,13 @@ select:focus {
     margin: auto;
 }
 
+.created {
+    text-align: center;
+    font-size: 0.6em;
+    padding: 5px;
+    color: #e6e6e6;
+}
+
 .sortButton {
     background: #9fa4c0;
     padding: 10px;
