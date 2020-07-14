@@ -13,11 +13,11 @@ body {
 }
 
 #container {
-    transition: all linear 0.3s;
+    transition: all linear 0.2s;
 }
 
 .rotation {
-    transform: rotatex(180deg);
+    transform: rotateX(90deg);
 }
 
 label {

@@ -7,28 +7,28 @@ document.querySelector('#sortASC').addEventListener('click', () => {
     setTimeout(() => {
         asc();
         container.removeAttribute('class', 'rotation')
-    }, 200)
+    }, 300)
 })
 document.querySelector('#sortFinishDate').addEventListener('click', () => {
     container.setAttribute('class', 'rotation')
     setTimeout(() => {
         FinishDate();
         container.removeAttribute('class', 'rotation')
-    }, 200)
+    }, 300)
 })
 document.querySelector('#sortcreatedDate').addEventListener('click', () => {
     container.setAttribute('class', 'rotation')
     setTimeout(() => {
         createdDate();
         container.removeAttribute('class', 'rotation')
-    }, 200)
+    }, 300)
 })
 document.querySelector('#sortIMP').addEventListener('click', () => {
     container.setAttribute('class', 'rotation')
     setTimeout(() => {
         byImportance();
         container.removeAttribute('class', 'rotation')
-    }, 200)
+    }, 300)
 })
 document.querySelector('#finished').addEventListener('click', justFinished)
 document.querySelector('#pending').addEventListener('click', () => { console.log('pending') })
