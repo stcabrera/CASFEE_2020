@@ -1,9 +1,4 @@
 let taskData = []
-let date = new Date()
-let day = date.getDate()
-let month = date.getMonth() + 1
-let year = date.getFullYear()
-let today = day + '.' + month + '.' + year;
 const server = 'http://localhost:3000/tasks/';
 
 function getData() {
@@ -19,16 +14,13 @@ function getData() {
 };
 getData()
 
-let saveButton = document.querySelector('#save')
-saveButton.addEventListener('click', pushData)
-
 function pushData() {
     const importanceValue = document.querySelector('#importance').value;
-    const dueDateDay = document.querySelector('#date').value;
     let dDate = new Date(document.querySelector('#date').value)
     let day = dDate.getDate()
     let month = dDate.getMonth() + 1
     let year = dDate.getFullYear();
+    let today = day + '.' + month + '.' + year;
 
     fetch(server, {
         method: 'POST',
@@ -49,7 +41,6 @@ function pushData() {
             "done": 'undone'
         })
     })
-
     location.reload()
 }
 
@@ -62,6 +53,28 @@ function deleteTask() {
         setTimeout(getData, 10)
     }
 }
-// update Tasks
+
+function checkTask(event) {
+    if (event.target.classList.contains('check')) {
+        const itemKey = event.target.parentElement.parentElement.parentElement.id
+        if (event.target.classList.contains('undone')) {
+            fetch(server + itemKey, {
+                method: 'PATCH',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ "done": 'done' }),
+            })
+
+            setTimeout(getData, 10)
+
+        } else {
+            fetch(server + itemKey, {
+                method: 'PATCH',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ "done": 'undone' }),
+            })
+            setTimeout(getData, 10)
+        }
+    }
+};
 
 // get single Task

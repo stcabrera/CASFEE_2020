@@ -12,6 +12,14 @@ body {
     overflow: hidden;
 }
 
+#container {
+    transition: all linear 0.3s;
+}
+
+.rotation {
+    transform: rotatex(180deg);
+}
+
 label {
     margin-top: 10px;
 }
