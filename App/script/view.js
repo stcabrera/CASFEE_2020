@@ -8,9 +8,10 @@ container.addEventListener('click', deleteTask);
 document.querySelector('#all').addEventListener('click', () => {
     container.setAttribute('class', 'rotation')
     setTimeout(() => {
-        asc();
+        FinishDate();
         container.removeAttribute('class', 'rotation')
-    }, 300)
+    }, 300);
+    window.localStorage.setItem('Template', 'all');
 });
 
 document.querySelector('#finished').addEventListener('click', () => {
@@ -19,6 +20,7 @@ document.querySelector('#finished').addEventListener('click', () => {
         justFinished();
         container.removeAttribute('class', 'rotation')
     }, 300)
+    window.localStorage.setItem('Template', 'finished');
 });
 
 document.querySelector('#pending').addEventListener('click', () => {
@@ -27,6 +29,7 @@ document.querySelector('#pending').addEventListener('click', () => {
         justUndone();
         container.removeAttribute('class', 'rotation')
     }, 300)
+    window.localStorage.setItem('Template', 'pending');
 });
 
 document.querySelector('#sortASC').addEventListener('click', () => {

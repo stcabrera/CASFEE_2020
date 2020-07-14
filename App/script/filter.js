@@ -5,6 +5,22 @@ const source2 = document.querySelector('#task-list-done-template').innerHTML;
 const template2 = Handlebars.compile(source2);
 const source3 = document.querySelector('#task-list-undone-template').innerHTML;
 const template3 = Handlebars.compile(source3);
+let sTemplate = window.localStorage.getItem('Template');
+let myTemplate = ';'
+
+if (sTemplate === finished) {
+    myTemplate = template;
+};
+if (sTemplate === pending) {
+    myTemplate = template2;
+}
+if (sTemplate === all) {
+
+}
+
+
+console.log(sTemplate)
+
 
 
 function asc() {
@@ -65,8 +81,8 @@ function justFinished() {
     }
 
     function compareTasks(t1, t2) {
-        if (t1.title < t2.title) { return -1 }
-        if (t1.title > t2.title) { return 1 }
+        if (t1.dueDate < t2.dueDate) { return -1 }
+        if (t1.dueDate > t2.dueDate) { return 1 }
         return 0;
     }
     renderTaskscreatedDate()
@@ -78,8 +94,8 @@ function justUndone() {
     }
 
     function compareTasks(t1, t2) {
-        if (t1.title < t2.title) { return -1 }
-        if (t1.title > t2.title) { return 1 }
+        if (t1.dueDate < t2.dueDate) { return -1 }
+        if (t1.dueDate > t2.dueDate) { return 1 }
         return 0;
     }
     renderTaskscreatedDate()

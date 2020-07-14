@@ -1,16 +1,29 @@
 let taskData = []
 const server = 'http://localhost:3000/tasks/';
 
+function getTemplate() {
+    let storedTemplate = window.localStorage.getItem('Template');
+    if (storedTemplate === 'all') {
+        FinishDate();
+    };
+    if (storedTemplate === 'finished') {
+        justFinished();
+    };
+    if (storedTemplate === 'pending') {
+        justUndone();
+    }
+}
+
 function getData() {
     fetch(server)
         .then(function(response) {
             return response.json()
         })
         .then(function(data) {
-            const tasks = { tasks: data }
-            taskData = tasks.tasks
-            console.log(taskData)
-            asc()
+            const tasks = { tasks: data };
+            taskData = tasks.tasks;
+            console.log(taskData);
+            getTemplate();
         });
 };
 getData()
@@ -54,6 +67,7 @@ function deleteTask() {
             fetch(server + itemKey, {
                 method: 'DELETE'
             })
+
             setTimeout(getData, 10)
         }
     }
