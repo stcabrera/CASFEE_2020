@@ -6,22 +6,6 @@ const template2 = Handlebars.compile(source2);
 const source3 = document.querySelector('#task-list-undone-template').innerHTML;
 const template3 = Handlebars.compile(source3);
 let sTemplate = window.localStorage.getItem('Template');
-let myTemplate = ';'
-
-if (sTemplate === finished) {
-    myTemplate = template;
-};
-if (sTemplate === pending) {
-    myTemplate = template2;
-}
-if (sTemplate === all) {
-
-}
-
-
-console.log(sTemplate)
-
-
 
 function asc() {
     function renderTasksASC() {
@@ -68,8 +52,8 @@ function createdDate() {
     }
 
     function compareTasks(t1, t2) {
-        if (t1.title < t2.title) { return -1 }
-        if (t1.title > t2.title) { return 1 }
+        if (t1.created < t2.created) { return -1 }
+        if (t1.created > t2.created) { return 1 }
         return 0;
     }
     renderTaskscreatedDate()

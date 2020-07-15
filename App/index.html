@@ -18,7 +18,7 @@
                 <div class="listWrapper">
                     <div class="listTitle">{{title}}</div>
                     <div class="listContent">{{note}}</div>
-                    <div class="created">Erstellt am: {{created}}</div>
+                    <div class="created">{{created}}</div>
                     <div class="listActions">
                         <div class="check {{done}}"></div>
                         <div class="listActions_right">
@@ -43,7 +43,7 @@
                 <div class="listWrapper">
                     <div class="listTitle">{{title}}</div>
                     <div class="listContent">{{note}}</div>
-                    <div class="created">Erstellt am: {{created}}</div>
+                    <div class="created">{{created}}</div>
                     <div class="listActions">
                         <div class="check {{done}}"></div>
                         <div class="listActions_right">
@@ -68,7 +68,7 @@
                 <div class="listWrapper">
                     <div class="listTitle">{{title}}</div>
                     <div class="listContent">{{note}}</div>
-                    <div class="created">Erstellt am: {{created}}</div>
+                    <div class="created">{{created}}</div>
                     <div class="listActions">
                         <div class="check {{done}}"></div>
                         <div class="listActions_right">
@@ -121,13 +121,14 @@
     <div id="wrapper" class="flex_row">
         <section class="top">
             <button id="add">Create new Task</button>
-            <button id="finished" class="filter">Show finished</button>
-            <button id="pending" class="filter">Show pending</button>
-            <button id="all" class="filter">Show all</button>
             <button id="colorChanger">Dark/Light Mode</button>
         </section>
         <section class="center">
             <div id="sortBlock">
+                <div class="sortTasks">
+                    <div id="sortPending" class="sortButton">Show pending</div>
+                    <div id="sortFinished" class="sortButton">Show finished</div>
+                </div>
                 <div class="sortTasks">
                     <div id="sortASC" class="sortButton">A-Z</div>
                     <div id="sortFinishDate" class="sortButton">by finish date</div>

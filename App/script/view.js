@@ -4,17 +4,11 @@ saveButton.addEventListener("click", () => { document.querySelector('#modalForm'
 saveButton.addEventListener('click', pushData);
 container.addEventListener('click', checkTask);
 container.addEventListener('click', deleteTask);
+container.addEventListener('click', editTask);
 
-document.querySelector('#all').addEventListener('click', () => {
-    container.setAttribute('class', 'rotation')
-    setTimeout(() => {
-        FinishDate();
-        container.removeAttribute('class', 'rotation')
-    }, 300);
-    window.localStorage.setItem('Template', 'all');
-});
 
-document.querySelector('#finished').addEventListener('click', () => {
+
+document.querySelector('#sortFinished').addEventListener('click', () => {
     container.setAttribute('class', 'rotation')
     setTimeout(() => {
         justFinished();
@@ -23,7 +17,7 @@ document.querySelector('#finished').addEventListener('click', () => {
     window.localStorage.setItem('Template', 'finished');
 });
 
-document.querySelector('#pending').addEventListener('click', () => {
+document.querySelector('#sortPending').addEventListener('click', () => {
     container.setAttribute('class', 'rotation')
     setTimeout(() => {
         justUndone();
@@ -38,6 +32,7 @@ document.querySelector('#sortASC').addEventListener('click', () => {
         asc();
         container.removeAttribute('class', 'rotation')
     }, 300)
+    window.localStorage.setItem('Template', 'ascending');
 });
 document.querySelector('#sortFinishDate').addEventListener('click', () => {
     container.setAttribute('class', 'rotation')
@@ -45,6 +40,7 @@ document.querySelector('#sortFinishDate').addEventListener('click', () => {
         FinishDate();
         container.removeAttribute('class', 'rotation')
     }, 300)
+    window.localStorage.setItem('Template', 'byFinishDate');
 });
 document.querySelector('#sortcreatedDate').addEventListener('click', () => {
     container.setAttribute('class', 'rotation')
@@ -52,6 +48,7 @@ document.querySelector('#sortcreatedDate').addEventListener('click', () => {
         createdDate();
         container.removeAttribute('class', 'rotation')
     }, 300)
+    window.localStorage.setItem('Template', 'byCreatedDate');
 });
 document.querySelector('#sortIMP').addEventListener('click', () => {
     container.setAttribute('class', 'rotation')
@@ -59,6 +56,7 @@ document.querySelector('#sortIMP').addEventListener('click', () => {
         byImportance();
         container.removeAttribute('class', 'rotation')
     }, 300)
+    window.localStorage.setItem('Template', 'byImportance');
 });
 
 (function displayDate() {

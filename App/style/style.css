@@ -329,7 +329,7 @@ select:focus {
 
 #sortBlock {
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     max-width: 800px;
     margin: auto;
 }

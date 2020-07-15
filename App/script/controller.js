@@ -5,12 +5,18 @@ function getTemplate() {
     let storedTemplate = window.localStorage.getItem('Template');
     if (storedTemplate === 'all') {
         FinishDate();
-    };
-    if (storedTemplate === 'finished') {
+    } else if (storedTemplate === 'finished') {
         justFinished();
-    };
-    if (storedTemplate === 'pending') {
+    } else if (storedTemplate === 'pending') {
         justUndone();
+    } else if (storedTemplate === 'ascending') {
+        asc();
+    } else if (storedTemplate === 'byFinishDate') {
+        FinishDate();
+    } else if (storedTemplate === 'byCreatedDate') {
+        createdDate();
+    } else {
+        byImportance();
     }
 }
 
@@ -22,7 +28,6 @@ function getData() {
         .then(function(data) {
             const tasks = { tasks: data };
             taskData = tasks.tasks;
-            console.log(taskData);
             getTemplate();
         });
 };
@@ -95,5 +100,23 @@ function checkTask(event) {
         }
     }
 };
+
+function editTask(event) {
+    if (event.target.classList.contains('edit')) {
+        const itemKey = event.target.parentElement.parentElement.parentElement.id
+        const taskTitle = event.target.parentElement.parentElement.parentElement.children[0].innerText
+        const taskNote = event.target.parentElement.parentElement.parentElement.children[1].innerText
+        const taskImportance = event.target.parentElement.parentElement.parentElement.parentElement.classList[2]
+        document.querySelector('#modalForm').style.left = '250px';
+        document.querySelector('#modalForm').style.width = '400px';
+        document.querySelector('#save').style.display = 'none';
+        document.querySelector('#update').style.display = 'block';
+        document.querySelector('.closeForm').style.left = '370px';
+        document.querySelector('#title').value = taskTitle;
+        document.querySelector('#note').value = taskNote;
+        document.querySelector('#importance').value = taskImportance;
+    }
+}
+
 
 // get single Task
