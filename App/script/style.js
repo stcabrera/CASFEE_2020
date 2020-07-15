@@ -15,6 +15,7 @@ lightButton.addEventListener('click', () => {
 
 closeButton.addEventListener("click", function() {
     document.querySelector('#modalForm').style.left = '-100%';
+    clearForm();
 });
 
 button.addEventListener("click", function() {

@@ -1,6 +1,12 @@
 let taskData = []
 const server = 'http://localhost:3000/tasks/';
 
+function clearForm() {
+    document.querySelector('#title').value = '';
+    document.querySelector('#note').value = '';
+    document.querySelector('#importance').value = '';
+}
+
 function getTemplate() {
     let storedTemplate = window.localStorage.getItem('Template');
     if (storedTemplate === 'all') {
@@ -106,8 +112,7 @@ function editTask(event) {
         const taskTitle = event.target.parentElement.parentElement.parentElement.children[0].innerText
         const taskNote = event.target.parentElement.parentElement.parentElement.children[1].innerText
         const taskImportance = event.target.parentElement.parentElement.parentElement.parentElement.classList[2]
-        document.querySelector('#modalForm').style.left = '250px';
-        document.querySelector('#modalForm').style.width = '400px';
+        document.querySelector('#modalForm').style.left = '0';
         document.querySelector('#save').style.display = 'none';
         document.querySelector('#update').style.display = 'block';
         document.querySelector('.closeForm').style.left = '370px';
