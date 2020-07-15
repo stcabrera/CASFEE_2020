@@ -61,7 +61,7 @@ function pushData() {
             "done": false
         })
     })
-    location.reload()
+    getData()
 }
 
 function deleteTask() {

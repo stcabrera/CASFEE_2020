@@ -1,6 +1,6 @@
 let saveButton = document.querySelector('#save');
 
-saveButton.addEventListener("click", () => { document.querySelector('#modalForm').style.top = '-100vh'; });
+saveButton.addEventListener("click", () => { document.querySelector('#modalForm').style.left = '-100%'; });
 saveButton.addEventListener('click', pushData);
 container.addEventListener('click', checkTask);
 container.addEventListener('click', deleteTask);

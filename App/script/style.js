@@ -14,18 +14,11 @@ lightButton.addEventListener('click', () => {
 });
 
 closeButton.addEventListener("click", function() {
-    document.querySelector('#modalForm').style.left = '50px';
-    document.querySelector('#modalForm').style.width = '200px';
-    document.querySelector('.closeForm').style.left = '160px';
+    document.querySelector('#modalForm').style.left = '-100%';
 });
 
 button.addEventListener("click", function() {
-    document.querySelector('#modalForm').style.left = '250px';
-    document.querySelector('#modalForm').style.width = '400px';
-    document.querySelector('#save').style.display = 'block';
-    document.querySelector('#update').style.display = 'none';
-    document.querySelector('.closeForm').style.left = '370px';
-
+    document.querySelector('#modalForm').style.left = '0';
 });
 
 function changeColor() {
