@@ -6,21 +6,19 @@
 }
 
 body {
-    padding: 50px;
+    padding: 10px 50px;
     background: #e6e6f7;
     background: linear-gradient(90deg, rgba(255, 255, 255, 1) 0%, rgba(203, 203, 255, 1) 35%, rgba(182, 220, 255, 1) 97%);
     overflow: hidden;
 }
 
-.date {
-    position: absolute;
-    top: 10px;
-    left: 50px;
-    width: 100px;
-    height: 40px;
-    padding: 10px;
-    background: rgba(183, 183, 225, 0.5);
-    color: white;
+.logo {
+    width: 150px;
+    height: 50px;
+    background-image: url(../img/notes_logo.png);
+    background-position: center;
+    background-size: 100%;
+    background-repeat: no-repeat;
 }
 
 .time {
@@ -61,8 +59,6 @@ label {
 #wrapper {
     box-shadow: 5px 5px 40px #2a2a2a;
     height: 90vh;
-    /* max-width: 1400px;
-    margin: auto; */
 }
 
 .flex_row {
@@ -73,6 +69,8 @@ label {
 
 .top {
     justify-content: space-between;
+    display: flex;
+    flex-direction: column;
     background: white;
     width: 200px;
     text-align: center;
@@ -97,11 +95,23 @@ label {
 
 #modalForm {
     position: fixed;
-    height: 90vh;
+    height: 89vh;
     width: 200px;
     left: 50px;
     transition: all linear 0.3s;
     z-index: 0;
+    margin-top: -6px;
+}
+
+#note {
+    display: block;
+    width: 100%;
+    height: 200px;
+    border: none;
+    box-shadow: inset 1px 1px 10px #b1b1b1;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 10px 0;
 }
 
 .modalFormInner {
@@ -109,6 +119,7 @@ label {
     background: white;
     padding: 20px;
     border-radius: 0 10px 10px 0;
+    margin-top: 10px;
 }
 
 input,
@@ -163,7 +174,8 @@ select:focus {
     background: #6e7288;
 }
 
-#colorChanger {
+.colorChanger {
+    outline: none;
     padding: 10px;
     cursor: pointer;
     background: #7f807f;
@@ -171,9 +183,11 @@ select:focus {
     margin: 20px;
     color: white;
     border-radius: 10px;
-    position: absolute;
-    bottom: 50px;
-    left: 70px;
+    width: 100%;
+}
+
+#colorChangerLight {
+    display: none;
 }
 
 #colorChanger:focus {
@@ -191,6 +205,7 @@ select:focus {
     cursor: pointer;
     border-radius: 0 0 0 50%;
     transition: all linear 0.3s;
+    margin-top: 10px;
 }
 
 #save,
@@ -233,7 +248,7 @@ select:focus {
 }
 
 .low {
-    background: #c1c4d6;
+    background: #a2c296;
 }
 
 .listWrapper {
@@ -362,20 +377,16 @@ select:focus {
 }
 
 .darkMode {
-    background: rgb(51, 51, 51);
+    background: #4d4c4c;
 }
 
 .darkModeTop {
-    background: rgb(22, 22, 22);
+    background: #323232;
 }
 
-.darkModelist {
-    color: rgb(167, 167, 167);
-}
-
-.darkModeCheck {
-    color: black;
-    background: none;
+.formDark {
+    background: #515151;
+    color: #a3a3a3;
 }
 
 .taskFullview {

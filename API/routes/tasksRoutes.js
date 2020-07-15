@@ -4,8 +4,7 @@ const Task = require('../models/Task');
 let date = new Date()
 let day = date.getDate()
 let month = date.getMonth() + 1
-let year = date.getFullYear()
-let today = day + '.' + month + '.' + year;
+let year = date.getFullYear();
 
 
 // Get Tasks
@@ -25,7 +24,7 @@ router.post('/', (req, res) => {
         dueDateDay: req.body.dueDateDay,
         dueDateMonth: req.body.dueDateMonth,
         dueDateYear: req.body.dueDateYear,
-        created: today,
+        created: req.body.dueDate,
         done: false
     });
 

@@ -59,6 +59,7 @@ document.querySelector('#sortIMP').addEventListener('click', () => {
     window.localStorage.setItem('Template', 'byImportance');
 });
 
+/*
 (function displayDate() {
     let display = new Date().toLocaleDateString();
     let dateBox = document.querySelector('.date')
@@ -70,4 +71,5 @@ document.querySelector('#sortIMP').addEventListener('click', () => {
     let timeBox = document.querySelector('.time')
     timeBox.innerHTML = display;
     setTimeout(displayClock, 1000);
-})();
+})(); 
+*/

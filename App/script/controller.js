@@ -72,7 +72,6 @@ function deleteTask() {
             fetch(server + itemKey, {
                 method: 'DELETE'
             })
-
             setTimeout(getData, 10)
         }
     }
