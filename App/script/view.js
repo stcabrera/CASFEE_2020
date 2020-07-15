@@ -1,10 +1,18 @@
 let saveButton = document.querySelector('#save');
+let updateButton = document.querySelector('#update');
 
 saveButton.addEventListener("click", () => {
     document.querySelector('#modalForm').style.left = '-100%';
     pushData();
     clearForm();
 });
+
+updateButton.addEventListener('click', () => {
+    document.querySelector('#modalForm').style.left = '-100%';
+    updateTask();
+    clearForm();
+});
+
 container.addEventListener('click', checkTask);
 container.addEventListener('click', deleteTask);
 container.addEventListener('click', editTask);

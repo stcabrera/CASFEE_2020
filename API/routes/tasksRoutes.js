@@ -68,4 +68,28 @@ router.patch('/:taskId', async(req, res) => {
         res.json({ message: err });
     }
 })
+
+// Update Task
+router.put('/:taskId', async(req, res) => {
+    try {
+        const updatedTask = await Task.updateOne({ _id: req.params.taskId }, {
+            $set: {
+                title: req.body.title,
+                note: req.body.note,
+                importance: req.body.importance,
+                dueDate: req.body.dueDate,
+                dueDateDay: req.body.dueDateDay,
+                dueDateMonth: req.body.dueDateMonth,
+                dueDateYear: req.body.dueDateYear,
+                created: req.body.dueDate,
+                modified: req.body.modified,
+                done: false
+            }
+        });
+        res.json(updatedTask);
+    } catch (err) {
+        res.json({ message: err });
+    }
+})
+
 module.exports = router;

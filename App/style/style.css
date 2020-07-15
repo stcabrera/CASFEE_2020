@@ -65,7 +65,7 @@ label {
 
 #wrapper {
     box-shadow: 5px 5px 40px #3e3e3e;
-    height: 90vh;
+    height: 85vh;
     max-width: 1200px;
     margin: auto;
 }
@@ -225,6 +225,10 @@ select:focus {
     width: 100%;
     border-radius: 10px;
     cursor: pointer;
+}
+
+#update {
+    display: none;
 }
 
 #list {
@@ -449,4 +453,19 @@ select:focus {
     font-size: 0.6em;
     padding-bottom: 3px;
     border-radius: 0 0 0 10px;
+}
+
+#key {
+    display: none;
+}
+
+#footer {
+    padding: 10px;
+}
+
+.copy {
+    text-align: center;
+    padding: 10px;
+    font-size: 0.7em;
+    color: #8b8b8b;
 }
