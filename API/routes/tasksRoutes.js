@@ -10,7 +10,29 @@ let year = date.getFullYear();
 // Get Tasks
 router.get('/', async(req, res) => {
     const tasks = await Task.find();
-    res.json(tasks);
+    const page = parseInt(req.query.page)
+    const limit = parseInt(req.query.limit)
+    const startIndex = (page - 1) * limit
+    const endIndex = page * limit
+    const results = {}
+
+    if (endIndex < tasks.length) {
+        results.next = {
+            page: page + 1,
+            limit: limit
+        }
+    }
+
+    if (startIndex > 0) {
+        results.previous = {
+            page: page - 1,
+            limit: limit
+        }
+    }
+
+
+    results.results = tasks.slice(startIndex, endIndex)
+    res.json(results);
 });
 
 // Create Task

@@ -1,6 +1,11 @@
 let saveButton = document.querySelector('#save');
 let updateButton = document.querySelector('#update');
 
+container.addEventListener('click', checkTask);
+container.addEventListener('click', deleteTask);
+container.addEventListener('click', editTask);
+container.addEventListener('click', getSingleTask);
+
 saveButton.addEventListener("click", () => {
     document.querySelector('#modalForm').style.left = '-100%';
     pushData();
@@ -12,12 +17,6 @@ updateButton.addEventListener('click', () => {
     updateTask();
     clearForm();
 });
-
-container.addEventListener('click', checkTask);
-container.addEventListener('click', deleteTask);
-container.addEventListener('click', editTask);
-
-
 
 document.querySelector('#sortFinished').addEventListener('click', () => {
     container.setAttribute('class', 'rotation')

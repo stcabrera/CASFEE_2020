@@ -43,5 +43,5 @@ function changeColor() {
 };
 changeColor();
 
-let copyDiv = document.querySelector('.copy')
-copyDiv.innerHTML = '©2020 Stephan Cabrera <br> CASFEE2020 <br> Projekt 1'
+(() => { let copyDiv = document.querySelector('.copy');
+    copyDiv.innerHTML = '©2020 Stephan Cabrera <br> CASFEE2020 <br> Projekt 1' })();

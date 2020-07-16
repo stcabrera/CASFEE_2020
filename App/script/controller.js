@@ -1,6 +1,7 @@
 let taskData = [];
-const server = 'http://localhost:3000/tasks/';
-
+let page = 2;
+const server = 'http://localhost:3000/tasks?page=' + page + '&limit=4';
+const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
 function clearForm() {
     document.querySelector('#title').value = '';
@@ -9,7 +10,7 @@ function clearForm() {
     document.querySelector('#date').value = '';
     document.querySelector('#update').style.display = 'none';
     document.querySelector('#save').style.display = 'block';
-}
+};
 
 function getTemplate() {
     let storedTemplate = window.localStorage.getItem('Template');
@@ -37,11 +38,16 @@ function getData() {
         })
         .then(function(data) {
             const tasks = { tasks: data };
-            taskData = tasks.tasks;
+            taskData = tasks.tasks.results;
+            let next = tasks.tasks.next;
+            let previous = tasks.tasks.previous
             getTemplate();
+            console.log(next)
+            console.log(previous)
+            console.log(taskData)
         });
-};
-getData()
+}
+getData();
 
 function pushData() {
     const importanceValue = document.querySelector('#importance').value;
@@ -50,7 +56,6 @@ function pushData() {
     let month = dDate.getMonth() + 1;
     let year = dDate.getFullYear();
     let today = day + '.' + month + '.' + year;
-    let months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
     fetch(server, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -71,7 +76,7 @@ function pushData() {
         })
     })
     setTimeout(getData, 10)
-}
+};
 
 function deleteTask() {
     if (event.target.classList.contains('delete')) {
@@ -84,7 +89,7 @@ function deleteTask() {
             setTimeout(getData, 10)
         }
     }
-}
+};
 
 function checkTask(event) {
     if (event.target.classList.contains('check')) {
@@ -112,12 +117,10 @@ function checkTask(event) {
 function editTask(event) {
     if (event.target.classList.contains('edit')) {
         const itemKey = event.target.parentElement.parentElement.parentElement.parentElement.id
-        console.log(itemKey)
         const taskTitle = event.target.parentElement.parentElement.parentElement.children[0].innerText
         const taskNote = event.target.parentElement.parentElement.parentElement.children[1].innerText
         const taskImportance = event.target.parentElement.parentElement.parentElement.parentElement.classList[2]
         const taskDuedatee = event.target.parentElement.parentElement.parentElement.children[2].innerText
-        console.log(taskDuedatee);
         document.querySelector('#modalForm').style.left = '0';
         document.querySelector('#save').style.display = 'none';
         document.querySelector('#update').style.display = 'block';
@@ -127,7 +130,7 @@ function editTask(event) {
         document.querySelector('#key').value = itemKey;
         document.querySelector('#date').value = taskDuedatee;
     }
-}
+};
 
 function updateTask() {
     const itemKey = document.querySelector('#key').value;
@@ -137,7 +140,6 @@ function updateTask() {
     let month = dDate.getMonth() + 1;
     let year = dDate.getFullYear();
     let today = day + '.' + month + '.' + year;
-    let months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
     fetch(server + itemKey, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
@@ -153,13 +155,17 @@ function updateTask() {
             "dueDateDay": day,
             "dueDateMonth": months[dDate.getMonth()],
             "dueDateYear": year,
-            "modified": today,
+            "created": today,
             "done": false
-        }),
+        })
     });
-    console.log(dDate);
-    console.log(document.querySelector('#date').value);
     setTimeout(getData, 10)
-}
+};
 
-// get single Task
+function getSingleTask(event) {
+    if (event.target.classList.contains('listTitle')) {
+        const itemKey = event.target.parentElement.parentElement.id;
+        console.log(itemKey)
+
+    }
+};

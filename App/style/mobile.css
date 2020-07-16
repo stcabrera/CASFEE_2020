@@ -1,0 +1,12 @@
+@media screen and (max-width:920px) {
+    body {
+        padding: 10px !important;
+    }
+    #wrapper {
+        flex-direction: column;
+    }
+    .top {
+        flex-direction: row;
+        width: 100%;
+    }
+}
