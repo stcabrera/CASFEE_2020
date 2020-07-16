@@ -41,6 +41,8 @@ body {
 
 #container {
     transition: all linear 0.2s;
+    height: 85%;
+    overflow-y: scroll;
 }
 
 .rotation {
@@ -234,14 +236,12 @@ select:focus {
 #list {
     list-style: none;
     justify-content: center;
-    height: 75vh;
-    margin-top: 20px;
 }
 
 .grid {
     display: grid;
     grid-template-columns: 200px 200px 200px 200px;
-    grid-template-rows: 200px 200px 200px;
+    grid-auto-rows: 200px;
     column-gap: 10px;
     row-gap: 15px;
 }
@@ -468,4 +468,16 @@ select:focus {
     padding: 10px;
     font-size: 0.7em;
     color: #8b8b8b;
+}
+
+#paginationBlock {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.activeFilter {
+    background: #8c91a9;
+    color: #ffffff;
+    border: none;
 }

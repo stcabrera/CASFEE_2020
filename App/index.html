@@ -7,10 +7,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+    <script id="pagination-template" type="text/x-handlebars-template">
+        <ul id="pagination" class="pagination">
+            {{#each this}}
+            <li>{{page}}</li>
+
+            {{/each}}
+        </ul>
+    </script>
     <script id="task-list-template" type="text/x-handlebars-template">
         <ul id="list" class="grid">
             {{#each this}}
-            <li id="{{_id}}" class="listItem {{importance}}">
+            <li id="{{_id}}" class="listItem {{importance}}" data-id="{{_id}}">
                 <div class="calendar">
                     <div class="calendarDay"> {{dueDateDay}} </div>
                     <div class="calendarMonth"> {{dueDateMonth}} </div>
@@ -35,7 +43,7 @@
     <script id="task-list-done-template" type="text/x-handlebars-template">
         <ul id="list" class="grid">
             {{#each this}} {{#if done}}
-            <li id="{{_id}}" class="listItem {{importance}}">
+            <li id="{{_id}}" class="listItem {{importance}}" data-id="{{_id}}">
                 <div class="calendar">
                     <div class="calendarDay"> {{dueDateDay}} </div>
                     <div class="calendarMonth"> {{dueDateMonth}} </div>
@@ -60,7 +68,7 @@
     <script id="task-list-undone-template" type="text/x-handlebars-template">
         <ul id="list" class="grid">
             {{#each this}} {{#unless done}}
-            <li id="{{_id}}" class="listItem {{importance}}">
+            <li id="{{_id}}" class="listItem {{importance}}" data-id="{{_id}}">
                 <div class="calendar">
                     <div class="calendarDay"> {{dueDateDay}} </div>
                     <div class="calendarMonth"> {{dueDateMonth}} </div>
@@ -140,6 +148,11 @@
                 </div>
             </div>
             <div id="container">
+
+            </div>
+            <div id="paginationBlock">
+                <div class="previous"></div>
+                <div class="next"></div>
             </div>
         </section>
     </div>

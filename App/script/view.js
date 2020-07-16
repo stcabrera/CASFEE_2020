@@ -19,6 +19,8 @@ updateButton.addEventListener('click', () => {
 });
 
 document.querySelector('#sortFinished').addEventListener('click', () => {
+    clearFilterButtons();
+    document.querySelector('#sortFinished').classList.add('activeFilter');
     container.setAttribute('class', 'rotation')
     setTimeout(() => {
         justFinished();
@@ -28,6 +30,8 @@ document.querySelector('#sortFinished').addEventListener('click', () => {
 });
 
 document.querySelector('#sortPending').addEventListener('click', () => {
+    clearFilterButtons();
+    document.querySelector('#sortPending').classList.add('activeFilter');
     container.setAttribute('class', 'rotation')
     setTimeout(() => {
         justUndone();
@@ -37,6 +41,8 @@ document.querySelector('#sortPending').addEventListener('click', () => {
 });
 
 document.querySelector('#sortASC').addEventListener('click', () => {
+    clearFilterButtons();
+    document.querySelector('#sortASC').classList.add('activeFilter');
     container.setAttribute('class', 'rotation')
     setTimeout(() => {
         asc();
@@ -44,7 +50,10 @@ document.querySelector('#sortASC').addEventListener('click', () => {
     }, 300)
     window.localStorage.setItem('Template', 'ascending');
 });
+
 document.querySelector('#sortFinishDate').addEventListener('click', () => {
+    clearFilterButtons();
+    document.querySelector('#sortFinishDate').classList.add('activeFilter');
     container.setAttribute('class', 'rotation')
     setTimeout(() => {
         FinishDate();
@@ -53,6 +62,8 @@ document.querySelector('#sortFinishDate').addEventListener('click', () => {
     window.localStorage.setItem('Template', 'byFinishDate');
 });
 document.querySelector('#sortcreatedDate').addEventListener('click', () => {
+    clearFilterButtons();
+    document.querySelector('#sortcreatedDate').classList.add('activeFilter');
     container.setAttribute('class', 'rotation')
     setTimeout(() => {
         createdDate();
@@ -61,6 +72,8 @@ document.querySelector('#sortcreatedDate').addEventListener('click', () => {
     window.localStorage.setItem('Template', 'byCreatedDate');
 });
 document.querySelector('#sortIMP').addEventListener('click', () => {
+    clearFilterButtons();
+    document.querySelector('#sortIMP').classList.add('activeFilter');
     container.setAttribute('class', 'rotation')
     setTimeout(() => {
         byImportance();

@@ -1,38 +1,11 @@
 const express = require('express');
 const router = express.Router();
 const Task = require('../models/Task');
-let date = new Date()
-let day = date.getDate()
-let month = date.getMonth() + 1
-let year = date.getFullYear();
-
 
 // Get Tasks
 router.get('/', async(req, res) => {
     const tasks = await Task.find();
-    const page = parseInt(req.query.page)
-    const limit = parseInt(req.query.limit)
-    const startIndex = (page - 1) * limit
-    const endIndex = page * limit
-    const results = {}
-
-    if (endIndex < tasks.length) {
-        results.next = {
-            page: page + 1,
-            limit: limit
-        }
-    }
-
-    if (startIndex > 0) {
-        results.previous = {
-            page: page - 1,
-            limit: limit
-        }
-    }
-
-
-    results.results = tasks.slice(startIndex, endIndex)
-    res.json(results);
+    res.json(tasks);
 });
 
 // Create Task

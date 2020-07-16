@@ -43,5 +43,16 @@ function changeColor() {
 };
 changeColor();
 
-(() => { let copyDiv = document.querySelector('.copy');
-    copyDiv.innerHTML = '©2020 Stephan Cabrera <br> CASFEE2020 <br> Projekt 1' })();
+function clearFilterButtons() {
+    document.querySelector('#sortPending').classList.remove('activeFilter');
+    document.querySelector('#sortFinished').classList.remove('activeFilter');
+    document.querySelector('#sortASC').classList.remove('activeFilter');
+    document.querySelector('#sortFinishDate').classList.remove('activeFilter');
+    document.querySelector('#sortcreatedDate').classList.remove('activeFilter');
+    document.querySelector('#sortIMP').classList.remove('activeFilter');
+}
+
+(() => {
+    let copyDiv = document.querySelector('.copy');
+    copyDiv.innerHTML = '©2020 Stephan Cabrera <br> CASFEE2020 <br> Projekt 1'
+})();

@@ -1,6 +1,5 @@
 let taskData = [];
-let page = 2;
-const server = 'http://localhost:3000/tasks?page=' + page + '&limit=4';
+const server = 'http://localhost:3000/tasks/';
 const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
 function clearForm() {
@@ -18,8 +17,10 @@ function getTemplate() {
         FinishDate();
     } else if (storedTemplate === 'finished') {
         justFinished();
+
     } else if (storedTemplate === 'pending') {
         justUndone();
+
     } else if (storedTemplate === 'ascending') {
         asc();
     } else if (storedTemplate === 'byFinishDate') {
@@ -38,13 +39,9 @@ function getData() {
         })
         .then(function(data) {
             const tasks = { tasks: data };
-            taskData = tasks.tasks.results;
-            let next = tasks.tasks.next;
-            let previous = tasks.tasks.previous
+            taskData = tasks.tasks;
+
             getTemplate();
-            console.log(next)
-            console.log(previous)
-            console.log(taskData)
         });
 }
 getData();
@@ -82,7 +79,7 @@ function deleteTask() {
     if (event.target.classList.contains('delete')) {
         let confirmDelete = confirm('Wollen Sie diesen Task wirklich löschen');
         if (confirmDelete == true) {
-            const itemKey = event.target.parentElement.parentElement.parentElement.parentElement.id;
+            const itemKey = event.target.parentElement.parentElement.parentElement.parentElement.getAttribute("id");
             fetch(server + itemKey, {
                 method: 'DELETE'
             })
@@ -93,7 +90,7 @@ function deleteTask() {
 
 function checkTask(event) {
     if (event.target.classList.contains('check')) {
-        const itemKey = event.target.parentElement.parentElement.parentElement.id
+        const itemKey = event.target.parentElement.parentElement.parentElement.getAttribute("id");
         if (event.target.classList.contains('false')) {
             fetch(server + itemKey, {
                 method: 'PATCH',
@@ -116,7 +113,7 @@ function checkTask(event) {
 
 function editTask(event) {
     if (event.target.classList.contains('edit')) {
-        const itemKey = event.target.parentElement.parentElement.parentElement.parentElement.id
+        const itemKey = event.target.parentElement.parentElement.parentElement.parentElement.getAttribute("id");
         const taskTitle = event.target.parentElement.parentElement.parentElement.children[0].innerText
         const taskNote = event.target.parentElement.parentElement.parentElement.children[1].innerText
         const taskImportance = event.target.parentElement.parentElement.parentElement.parentElement.classList[2]
@@ -164,7 +161,7 @@ function updateTask() {
 
 function getSingleTask(event) {
     if (event.target.classList.contains('listTitle')) {
-        const itemKey = event.target.parentElement.parentElement.id;
+        const itemKey = event.target.parentElement.parentElement.getAttribute("id");
         console.log(itemKey)
 
     }
