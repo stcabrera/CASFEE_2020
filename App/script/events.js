@@ -4,7 +4,6 @@ let updateButton = document.querySelector('#update');
 container.addEventListener('click', checkTask);
 container.addEventListener('click', deleteTask);
 container.addEventListener('click', editTask);
-container.addEventListener('click', getSingleTask);
 
 saveButton.addEventListener("click", () => {
     if (taskTitle.value != '' && taskNote.value != '' && taskDuedate.value != '') {
@@ -48,17 +47,6 @@ document.querySelector('#sortPending').addEventListener('click', () => {
     window.localStorage.setItem('Template', 'pending');
 });
 
-document.querySelector('#sortASC').addEventListener('click', () => {
-    clearFilterButtons();
-    document.querySelector('#sortASC').classList.add('activeFilter');
-    container.setAttribute('class', 'rotation')
-    setTimeout(() => {
-        asc();
-        container.removeAttribute('class', 'rotation')
-    }, 300)
-    window.localStorage.setItem('Template', 'ascending');
-});
-
 document.querySelector('#sortFinishDate').addEventListener('click', () => {
     clearFilterButtons();
     document.querySelector('#sortFinishDate').classList.add('activeFilter');
@@ -69,6 +57,7 @@ document.querySelector('#sortFinishDate').addEventListener('click', () => {
     }, 300)
     window.localStorage.setItem('Template', 'byFinishDate');
 });
+
 document.querySelector('#sortcreatedDate').addEventListener('click', () => {
     clearFilterButtons();
     document.querySelector('#sortcreatedDate').classList.add('activeFilter');
@@ -79,6 +68,7 @@ document.querySelector('#sortcreatedDate').addEventListener('click', () => {
     }, 300)
     window.localStorage.setItem('Template', 'byCreatedDate');
 });
+
 document.querySelector('#sortIMP').addEventListener('click', () => {
     clearFilterButtons();
     document.querySelector('#sortIMP').classList.add('activeFilter');

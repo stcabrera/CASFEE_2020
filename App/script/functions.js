@@ -29,14 +29,10 @@ function clearForm() {
 
 function getTemplate() {
     let storedTemplate = window.localStorage.getItem('Template');
-    if (storedTemplate === 'all') {
-        FinishDate();
-    } else if (storedTemplate === 'finished') {
+    if (storedTemplate === 'finished') {
         justFinished();
     } else if (storedTemplate === 'pending') {
         justUndone();
-    } else if (storedTemplate === 'ascending') {
-        asc();
     } else if (storedTemplate === 'byFinishDate') {
         FinishDate();
     } else if (storedTemplate === 'byCreatedDate') {
@@ -51,7 +47,7 @@ function pushData() {
     let dDate = new Date(taskDuedate.value);
     let day = dDate.getDate();
     let year = dDate.getFullYear();
-    let today = new Date();
+    let today = new Date().toLocaleDateString('de-DE');
 
     fetch(server, {
         method: 'POST',
@@ -98,7 +94,7 @@ function checkTask(event) {
                 body: JSON.stringify({ "done": true }),
             })
 
-            setTimeout(getData, 10)
+            setTimeout(getData, 50)
 
         } else {
             fetch(server + itemKey, {
@@ -106,7 +102,7 @@ function checkTask(event) {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ "done": false }),
             })
-            setTimeout(getData, 10)
+            setTimeout(getData, 50)
         }
     }
 };
@@ -154,16 +150,9 @@ function updateTask() {
             "dueDateDay": day,
             "dueDateMonth": months[dDate.getMonth()],
             "dueDateYear": year,
-            "created": new Date(),
+            "created": new Date().toLocaleDateString('de-DE'),
             "done": false
         })
     });
     setTimeout(getData, 10)
-};
-
-function getSingleTask(event) {
-    if (event.target.classList.contains('listTitle')) {
-        const itemKey = event.target.parentElement.parentElement.getAttribute("id");
-        console.log(itemKey)
-    }
 };

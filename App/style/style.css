@@ -341,7 +341,6 @@ select:focus {
     text-transform: uppercase;
     font-weight: bold;
     color: rgb(255, 255, 255);
-    cursor: pointer;
     margin-left: 35px;
     padding: 10px;
     height: 60px;
@@ -353,6 +352,7 @@ select:focus {
     font-size: 0.8em;
     flex-grow: 1;
     margin-left: 45px;
+    overflow-y: hidden;
 }
 
 #sortBlock {

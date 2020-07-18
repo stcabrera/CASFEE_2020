@@ -19,7 +19,7 @@ router.post('/', (req, res) => {
         dueDateDay: req.body.dueDateDay,
         dueDateMonth: req.body.dueDateMonth,
         dueDateYear: req.body.dueDateYear,
-        created: new Date(),
+        created: req.body.created,
         done: false
     });
 
@@ -76,8 +76,7 @@ router.put('/:taskId', async(req, res) => {
                 dueDateDay: req.body.dueDateDay,
                 dueDateMonth: req.body.dueDateMonth,
                 dueDateYear: req.body.dueDateYear,
-                created: new Date(),
-                modified: req.body.modified,
+                created: new Date().toLocaleDateString('de-DE'),
                 done: false
             }
         });

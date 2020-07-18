@@ -18,6 +18,7 @@
                 <div class="listWrapper">
                     <div class="listTitle">{{title}}</div>
                     <div class="listContent">{{note}}</div>
+                    <div class="created">Created: {{created}}</div>
                     <div class="listActions">
                         <div class="check {{done}}"></div>
                         <div class="listActions_right">
@@ -42,6 +43,7 @@
                 <div class="listWrapper">
                     <div class="listTitle">{{title}}</div>
                     <div class="listContent">{{note}}</div>
+                    <div class="created">Created: {{created}}</div>
                     <div class="listActions">
                         <div class="check {{done}}"></div>
                         <div class="listActions_right">
@@ -66,6 +68,7 @@
                 <div class="listWrapper">
                     <div class="listTitle">{{title}}</div>
                     <div class="listContent">{{note}}</div>
+                    <div class="created">Created: {{created}}</div>
                     <div class="listActions">
                         <div class="check {{done}}"></div>
                         <div class="listActions_right">
@@ -78,7 +81,7 @@
             {{/unless}} {{/each}}
         </ul>
     </script>
-    <title>Document</title>
+    <title>Notes - CASFEE2020</title>
 </head>
 
 <body>
@@ -128,7 +131,6 @@
                     <div id="sortFinished" class="sortButton">Show finished</div>
                 </div>
                 <div class="sortTasks">
-                    <div id="sortASC" class="sortButton">A-Z</div>
                     <div id="sortFinishDate" class="sortButton">by finish date</div>
                     <div id="sortcreatedDate" class="sortButton">by created date</div>
                     <div id="sortIMP" class="sortButton">By Importance</div>

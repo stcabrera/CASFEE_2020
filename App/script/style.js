@@ -47,7 +47,6 @@ changeColor();
 function clearFilterButtons() {
     document.querySelector('#sortPending').classList.remove('activeFilter');
     document.querySelector('#sortFinished').classList.remove('activeFilter');
-    document.querySelector('#sortASC').classList.remove('activeFilter');
     document.querySelector('#sortFinishDate').classList.remove('activeFilter');
     document.querySelector('#sortcreatedDate').classList.remove('activeFilter');
     document.querySelector('#sortIMP').classList.remove('activeFilter');
