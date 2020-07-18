@@ -6,7 +6,7 @@
 }
 
 body {
-    padding: 10px 50px;
+    padding: 50px;
     background: #e6e6f7;
     background: linear-gradient(90deg, rgba(255, 255, 255, 1) 0%, rgba(203, 203, 255, 1) 35%, rgba(182, 220, 255, 1) 97%);
     overflow: hidden;
@@ -20,7 +20,7 @@ body {
 }
 
 .logo {
-    width: 120px;
+    width: 150px;
     height: 50px;
     background-image: url(../img/notes_logo.png);
     background-position: center;
@@ -58,11 +58,11 @@ label {
 }
 
 ::-webkit-scrollbar-track {
-    background: #f1f1f1;
+    background: #464646;
 }
 
  ::-webkit-scrollbar-thumb {
-    background: rgb(165, 165, 165);
+    background: rgb(112, 112, 112);
 }
 
 #wrapper {
@@ -70,6 +70,7 @@ label {
     height: 85vh;
     max-width: 1200px;
     margin: auto;
+    border-radius: 40px;
 }
 
 .flex_row {
@@ -87,6 +88,7 @@ label {
     text-align: center;
     z-index: 9;
     padding: 20px 50px 0 20px;
+    border-radius: 40px 0 0 40px;
 }
 
 .sortTasks,
@@ -114,7 +116,6 @@ label {
     display: block;
     width: 100%;
     height: 200px;
-    border: none;
     box-shadow: inset 1px 1px 10px #b1b1b1;
     border-radius: 10px;
     padding: 10px;
@@ -133,7 +134,6 @@ input,
 select {
     display: block;
     box-shadow: inset 1px 1px 10px #b1b1b1;
-    border: none;
     height: 50px;
     width: 100%;
     border-radius: 10px;
@@ -152,12 +152,16 @@ select:focus {
     margin: 20px;
     color: #ffffff;
     outline: none;
-    border-radius: 10px;
+    border-radius: 50%;
     border: none;
-    width: 100%;
+    width: 120px;
     background: #8c91a9;
-    height: 50px;
+    height: 120px;
     transition: all linear 0.2s;
+}
+
+.plusButton {
+    font-size: 3em;
 }
 
 #add:hover {
@@ -392,7 +396,7 @@ select:focus {
 }
 
 .darkModeTop {
-    background: #323232;
+    background: #686868;
 }
 
 .formDark {
@@ -480,4 +484,12 @@ select:focus {
     background: #8c91a9;
     color: #ffffff;
     border: none;
+}
+
+input:invalid {
+    border: 2px dashed red;
+}
+
+input:valid {
+    border: 2px solid green;
 }

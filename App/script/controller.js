@@ -1,12 +1,15 @@
 let taskData = [];
 const server = 'http://localhost:3000/tasks/';
 const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+let taskTitle = document.querySelector('#title');
+let taskNote = document.querySelector('#note');
+let taskDuedate = document.querySelector('#date');
+let taskImportance = document.querySelector('#importance');
 
 function clearForm() {
     document.querySelector('#title').value = '';
     document.querySelector('#note').value = '';
-    document.querySelector('#importance').value = '';
-    document.querySelector('#date').value = '';
+    document.querySelector('#importance').selected = 2;
     document.querySelector('#update').style.display = 'none';
     document.querySelector('#save').style.display = 'block';
 };
@@ -17,10 +20,8 @@ function getTemplate() {
         FinishDate();
     } else if (storedTemplate === 'finished') {
         justFinished();
-
     } else if (storedTemplate === 'pending') {
         justUndone();
-
     } else if (storedTemplate === 'ascending') {
         asc();
     } else if (storedTemplate === 'byFinishDate') {
@@ -40,7 +41,7 @@ function getData() {
         .then(function(data) {
             const tasks = { tasks: data };
             taskData = tasks.tasks;
-
+            console.log(taskData)
             getTemplate();
         });
 }
@@ -50,9 +51,10 @@ function pushData() {
     const importanceValue = document.querySelector('#importance').value;
     let dDate = new Date(document.querySelector('#date').value);
     let day = dDate.getDate();
-    let month = dDate.getMonth() + 1;
     let year = dDate.getFullYear();
-    let today = day + '.' + month + '.' + year;
+    let today = new Date();
+
+    console.log(today)
     fetch(server, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -68,7 +70,7 @@ function pushData() {
             "dueDateDay": day,
             "dueDateMonth": months[dDate.getMonth()],
             "dueDateYear": year,
-            "created": today,
+            "created": 'blub',
             "done": false
         })
     })
@@ -79,7 +81,7 @@ function deleteTask() {
     if (event.target.classList.contains('delete')) {
         let confirmDelete = confirm('Wollen Sie diesen Task wirklich löschen');
         if (confirmDelete == true) {
-            const itemKey = event.target.parentElement.parentElement.parentElement.parentElement.getAttribute("id");
+            const itemKey = event.target.parentElement.parentElement.parentElement.parentElement.dataset.id;
             fetch(server + itemKey, {
                 method: 'DELETE'
             })
@@ -90,7 +92,7 @@ function deleteTask() {
 
 function checkTask(event) {
     if (event.target.classList.contains('check')) {
-        const itemKey = event.target.parentElement.parentElement.parentElement.getAttribute("id");
+        const itemKey = event.target.parentElement.parentElement.parentElement.dataset.id;
         if (event.target.classList.contains('false')) {
             fetch(server + itemKey, {
                 method: 'PATCH',
@@ -113,19 +115,20 @@ function checkTask(event) {
 
 function editTask(event) {
     if (event.target.classList.contains('edit')) {
-        const itemKey = event.target.parentElement.parentElement.parentElement.parentElement.getAttribute("id");
-        const taskTitle = event.target.parentElement.parentElement.parentElement.children[0].innerText
-        const taskNote = event.target.parentElement.parentElement.parentElement.children[1].innerText
-        const taskImportance = event.target.parentElement.parentElement.parentElement.parentElement.classList[2]
-        const taskDuedatee = event.target.parentElement.parentElement.parentElement.children[2].innerText
+        const itemKey = event.target.parentElement.parentElement.parentElement.parentElement.dataset.id
+        const fillTitle = event.target.parentElement.parentElement.parentElement.children[0].innerText
+        const fillNote = event.target.parentElement.parentElement.parentElement.children[1].innerText
+        const fillImportance = event.target.parentElement.parentElement.parentElement.parentElement.classList[2]
+        const fillDuedate = event.target.parentElement.parentElement.parentElement.parentElement.dataset.date
+
         document.querySelector('#modalForm').style.left = '0';
         document.querySelector('#save').style.display = 'none';
         document.querySelector('#update').style.display = 'block';
-        document.querySelector('#title').value = taskTitle;
-        document.querySelector('#note').value = taskNote;
-        document.querySelector('#importance').value = taskImportance;
         document.querySelector('#key').value = itemKey;
-        document.querySelector('#date').value = taskDuedatee;
+        taskImportance.value = fillImportance;
+        taskTitle.value = fillTitle;
+        taskNote.value = fillNote;
+        taskDuedate.value = fillDuedate;
     }
 };
 
@@ -152,7 +155,7 @@ function updateTask() {
             "dueDateDay": day,
             "dueDateMonth": months[dDate.getMonth()],
             "dueDateYear": year,
-            "created": today,
+            "created": new Date(),
             "done": false
         })
     });
@@ -163,6 +166,5 @@ function getSingleTask(event) {
     if (event.target.classList.contains('listTitle')) {
         const itemKey = event.target.parentElement.parentElement.getAttribute("id");
         console.log(itemKey)
-
     }
 };

@@ -1,18 +1,10 @@
 const container = document.querySelector('#container');
-
 const source = document.querySelector('#task-list-template').innerHTML;
 const template = Handlebars.compile(source);
 const source2 = document.querySelector('#task-list-done-template').innerHTML;
 const template2 = Handlebars.compile(source2);
 const source3 = document.querySelector('#task-list-undone-template').innerHTML;
 const template3 = Handlebars.compile(source3);
-
-const paginationBlock = document.querySelector('#paginationBlock');
-const sourcePagination = document.querySelector('#pagination-template').innerHTML;
-const templatePagination = Handlebars.compile(source3);
-
-
-
 
 function asc() {
     (function renderTasksASC() { container.innerHTML = template(() => { return [...taskData].sort(compareTasks); }); })();

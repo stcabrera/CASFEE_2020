@@ -7,15 +7,24 @@ container.addEventListener('click', editTask);
 container.addEventListener('click', getSingleTask);
 
 saveButton.addEventListener("click", () => {
-    document.querySelector('#modalForm').style.left = '-100%';
-    pushData();
-    clearForm();
+    if (taskTitle.value != '' && taskNote.value != '' && taskDuedate.value != '') {
+        document.querySelector('#modalForm').style.left = '-100%';
+        pushData();
+        clearForm();
+    } else {
+        alert('The form is incomplete')
+    }
+
 });
 
 updateButton.addEventListener('click', () => {
-    document.querySelector('#modalForm').style.left = '-100%';
-    updateTask();
-    clearForm();
+    if (taskTitle.value != '' && taskNote.value != '' && taskDuedate.value != '') {
+        document.querySelector('#modalForm').style.left = '-100%';
+        updateTask();
+        clearForm();
+    } else {
+        alert('The form is incomplete')
+    }
 });
 
 document.querySelector('#sortFinished').addEventListener('click', () => {
