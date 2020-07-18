@@ -6,10 +6,23 @@ let taskNote = document.querySelector('#note');
 let taskDuedate = document.querySelector('#date');
 let taskImportance = document.querySelector('#importance');
 
+function getData() {
+    fetch(server)
+        .then(function(response) {
+            return response.json()
+        })
+        .then(function(data) {
+            const tasks = { tasks: data };
+            taskData = tasks.tasks;
+            getTemplate();
+        });
+}
+getData();
+
 function clearForm() {
-    document.querySelector('#title').value = '';
-    document.querySelector('#note').value = '';
-    document.querySelector('#importance').selected = 2;
+    taskTitle.value = '';
+    taskNote.value = '';
+    taskDuedate.value = '';
     document.querySelector('#update').style.display = 'none';
     document.querySelector('#save').style.display = 'block';
 };
@@ -33,44 +46,29 @@ function getTemplate() {
     }
 };
 
-function getData() {
-    fetch(server)
-        .then(function(response) {
-            return response.json()
-        })
-        .then(function(data) {
-            const tasks = { tasks: data };
-            taskData = tasks.tasks;
-            console.log(taskData)
-            getTemplate();
-        });
-}
-getData();
-
 function pushData() {
     const importanceValue = document.querySelector('#importance').value;
-    let dDate = new Date(document.querySelector('#date').value);
+    let dDate = new Date(taskDuedate.value);
     let day = dDate.getDate();
     let year = dDate.getFullYear();
     let today = new Date();
 
-    console.log(today)
     fetch(server, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-            "title": document.querySelector('#title').value,
-            "note": document.querySelector('#note').value,
+            "title": taskTitle.value,
+            "note": taskNote.value,
             "importance": (() => {
                 if (importanceValue === 'high') { return 3 + ' high' };
                 if (importanceValue === 'medium') { return 2 + ' medium' };
                 if (importanceValue === 'low') { return 1 + ' low' };
             })(),
-            "dueDate": document.querySelector('#date').value,
+            "dueDate": taskDuedate.value,
             "dueDateDay": day,
             "dueDateMonth": months[dDate.getMonth()],
             "dueDateYear": year,
-            "created": 'blub',
+            "created": today,
             "done": false
         })
     })
@@ -125,6 +123,7 @@ function editTask(event) {
         document.querySelector('#save').style.display = 'none';
         document.querySelector('#update').style.display = 'block';
         document.querySelector('#key').value = itemKey;
+
         taskImportance.value = fillImportance;
         taskTitle.value = fillTitle;
         taskNote.value = fillNote;
@@ -135,23 +134,23 @@ function editTask(event) {
 function updateTask() {
     const itemKey = document.querySelector('#key').value;
     const importanceValue = document.querySelector('#importance').value;
-    const dDate = new Date(document.querySelector('#date').value);
+    const dDate = new Date(taskDuedate.value);
     let day = dDate.getDate();
     let month = dDate.getMonth() + 1;
     let year = dDate.getFullYear();
-    let today = day + '.' + month + '.' + year;
+
     fetch(server + itemKey, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-            "title": document.querySelector('#title').value,
-            "note": document.querySelector('#note').value,
+            "title": taskTitle.value,
+            "note": taskNote.value,
             "importance": (() => {
                 if (importanceValue === 'high') { return 3 + ' high' };
                 if (importanceValue === 'medium') { return 2 + ' medium' };
                 if (importanceValue === 'low') { return 1 + ' low' };
             })(),
-            "dueDate": document.querySelector('#date').value,
+            "dueDate": taskDuedate.value,
             "dueDateDay": day,
             "dueDateMonth": months[dDate.getMonth()],
             "dueDateYear": year,

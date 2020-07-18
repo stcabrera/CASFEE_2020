@@ -2,7 +2,8 @@ let darkButton = document.querySelector('#colorChangerDark');
 let lightButton = document.querySelector('#colorChangerLight');
 let button = document.querySelector('#add');
 let closeButton = document.querySelector('.closeForm');
-let storedColorMode = window.localStorage.getItem('darkMode');
+let date = new Date();
+let year = date.getFullYear();
 
 darkButton.addEventListener('click', () => {
     window.localStorage.setItem('darkMode', 'on');
@@ -54,5 +55,5 @@ function clearFilterButtons() {
 
 (() => {
     let copyDiv = document.querySelector('.copy');
-    copyDiv.innerHTML = '©2020 Stephan Cabrera <br> CASFEE2020 <br> Projekt 1'
+    copyDiv.innerHTML = '©' + year + ' Stephan Cabrera <br> CASFEE2020 <br> Projekt 1'
 })();

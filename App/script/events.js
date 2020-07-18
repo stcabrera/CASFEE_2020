@@ -14,7 +14,6 @@ saveButton.addEventListener("click", () => {
     } else {
         alert('The form is incomplete')
     }
-
 });
 
 updateButton.addEventListener('click', () => {
@@ -90,18 +89,3 @@ document.querySelector('#sortIMP').addEventListener('click', () => {
     }, 300)
     window.localStorage.setItem('Template', 'byImportance');
 });
-
-/*
-(function displayDate() {
-    let display = new Date().toLocaleDateString();
-    let dateBox = document.querySelector('.date')
-    dateBox.innerHTML = display;
-})();
-
-(function displayClock() {
-    let display = new Date().toLocaleTimeString();
-    let timeBox = document.querySelector('.time')
-    timeBox.innerHTML = display;
-    setTimeout(displayClock, 1000);
-})(); 
-*/
